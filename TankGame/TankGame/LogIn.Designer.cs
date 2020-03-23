@@ -1,6 +1,7 @@
-﻿namespace TankGame
+﻿using System.Windows.Forms;
+namespace TankGame
 {
-    partial class Form1
+    partial class LogIn
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +34,15 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "Form1";
         }
+        Button EnterBtn;
+        Button CreateAccoutBtn;
 
+        Label LogInLabel;
+        Label LoginLabel;
+        Label PasswordLabel;
+
+        TextBox LoginTextBox;
+        TextBox PasswordTextBox;
         #endregion
     }
 }
