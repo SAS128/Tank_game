@@ -38,7 +38,7 @@ namespace TankGame
             }
             else
             {
-                if (sender.GetType() == (new Wall()).GetType())
+                if (sender.GetType() == (new Obstacle()).GetType())
                 {
 
                 }

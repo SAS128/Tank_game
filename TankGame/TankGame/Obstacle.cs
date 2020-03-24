@@ -22,21 +22,21 @@ namespace TankGame
         {
             if (sender.GetType() == (new Bullet()).GetType())
             {
-
+                sender.position = new Point(-20, -20);
             }
             else
             {
                 if (sender.GetType() == (new Tank()).GetType())
                 {
-
+                    (sender as Tank).position = (sender as Tank).LastPosition;
                 }
-                else
-                {
-                    if (sender.GetType() == (new Bonus()).GetType())
-                    {
+                //else
+                //{
+                //    if (sender.GetType() == (new Bonus()).GetType())
+                //    {
 
-                    }
-                }
+                //    }
+                //}
             }
 
 

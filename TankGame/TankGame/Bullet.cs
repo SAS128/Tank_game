@@ -21,7 +21,7 @@ namespace TankGame
             position = pos;
             this.Weight = Weight;
         }
-
+   
 
 
         public override void Collision(ref FieldObject sender)
@@ -32,7 +32,7 @@ namespace TankGame
             }
             else
             {
-                if (sender.GetType() == (new Wall()).GetType())
+                if (sender.GetType() == (new Obstacle()).GetType())
                 {
 
                 }
