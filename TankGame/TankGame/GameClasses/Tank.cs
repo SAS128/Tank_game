@@ -5,18 +5,17 @@ namespace TankGame
 {
     class Tank : PlayerObject
     {
-
        public Point LastPosition { get; set; }
         int Hpoints { get; set; }
         int Damage { get; set; }
-        int Weight { get; set; }//= задержка в милесикундах(чем болье параметр веса- тем больше задержка-тем медленнее танк)
+        bool shootingNow { get; set; }
         public Tank()
         {
             position = new Point(5,5);
             LastPosition = position;
             Hpoints = 300;
             Damage = 100;
-            Weight = 300;
+            speed = 300;
         }
 
         public Tank(Point tankpos)
@@ -25,33 +24,28 @@ namespace TankGame
             LastPosition = position;
             Hpoints = 300;
             Damage = 100;
-            Weight = 300;
+            speed = 300;
         }
 
 
-        public Tank(Point tankpos, int Hpoints, int Damage, int Weight)
+        public Tank(Point tankpos, int Hpoints, int Damage, uint Weight)
         {
            position = tankpos;
             LastPosition = position;
             this.Hpoints = Hpoints;
            this.Damage = Damage;
-           this.Weight = Weight;
+           this.speed = Weight;
         }
 
-
-
-
-        public void ChangDirectoin(eDirection newdir)
-        {
-            direction = newdir;
-        }
 
         public override void Move()
         {
             LastPosition = position;
-            switch(direction)
+           
+            switch (eDir)
             {
-                case eDirection.RIGHT:position = new Point(position.X+5,position.Y);
+                case eDirection.RIGHT:
+                    position = new Point(position.X+5, position.Y);
                     break;
                 case eDirection.LEFT:
                     position = new Point(position.X-5, position.Y);
@@ -66,5 +60,19 @@ namespace TankGame
                     break;
             }
         }
+
+        public void Shoot()
+        {
+            shootingNow = true;
+            //shooting
+        }
+
+        public void ChangeDirection(eDirection newdir)
+        {
+            eDir = newdir;
+        }
+
+
+      
     }
 }

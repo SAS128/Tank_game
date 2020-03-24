@@ -24,7 +24,7 @@ namespace TankGame
    
 
 
-        public override void Collision(ref FieldObject sender)
+        public override void Collision(ref object sender)
         {
             if (sender.GetType() == (new Tank()).GetType())
             {

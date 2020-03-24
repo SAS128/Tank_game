@@ -11,7 +11,7 @@ namespace TankGame
     abstract class PlayerObject
     {
         protected eDirection direction;
-        protected Point point;
+        protected Point position;
         protected uint speed;
         public abstract void Move();
     }
