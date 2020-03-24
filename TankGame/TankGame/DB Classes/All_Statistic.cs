@@ -30,6 +30,45 @@ namespace TankGame.DB_Classes
         public int User_Statistic { get; set; }
 
 
+        public All_Statistic Insert(int KillCount, int DeathCount, int VictoryCount, int LooseCount,int AllCountBattle, int ShortBattleCount,int LongBattleCount,int User_Statistic)
+        {
+            All_Statistic res = new All_Statistic();
+            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            {
+                connection.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO All_Statistic(KillCount,DeathCount,VictoryCount,LooseCount,AllCountBattle,ShortBattleCount,LongBattleCount,User_Statistic) VALUES(@kc,@dc,@vc,@lc,@acb,@sbc,@lbc,@us)", connection))
+                {
+                    cmd.Parameters.Add(new SQLiteParameter("@kc", KillCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@dc", DeathCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@vc", VictoryCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@lc", LooseCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@acb", AllCountBattle));
+                    cmd.Parameters.Add(new SQLiteParameter("@sbc", ShortBattleCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@lbc", LongBattleCount));
+                    cmd.Parameters.Add(new SQLiteParameter("@us", User_Statistic));
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "SELECT ID FROM All_Statistic ORDER BY ID DESC LIMIT 1";
+
+
+                    res = new All_Statistic()
+                    {
+                       KillCount = KillCount,
+                       DeathCount = DeathCount,
+                       VictoryCount = VictoryCount,
+                       LooseCount = LooseCount,
+                       AllCountBattle = AllCountBattle,
+                       ShortBattleCount = ShortBattleCount,
+                       LongBattleCount = LongBattleCount,
+                       User_Statistic = User_Statistic,
+                       ID = (int)cmd.ExecuteScalar()
+                   };
+                }
+            }
+            return res;
+        }
+
         public List<All_Statistic> ReadAll()
         {
             List<All_Statistic> res = new List<All_Statistic>();
@@ -71,5 +110,7 @@ namespace TankGame.DB_Classes
             }
             return res;
         }
+
+        
     }
 }
