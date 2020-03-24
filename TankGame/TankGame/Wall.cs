@@ -3,16 +3,16 @@ using System.Drawing;
 
 namespace TankGame
 {
-    class Wall : FieldObject
+    class Obstacle : FieldObject
     {
         Point secondpos { get; set; }
-        public Wall()
+        public Obstacle()
         {
             position = new Point(0, 0);
             secondpos = new Point(0, 0);
         }
 
-        public Wall(Point first,Point second)
+        public Obstacle(Point first,Point second)
         {
             position = first;
             secondpos = second;
