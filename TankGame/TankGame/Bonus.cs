@@ -7,6 +7,7 @@ namespace TankGame
 
         string PropertyName { get; set; }
         int value { get; set; }
+
         public Bonus()
         {
         }
