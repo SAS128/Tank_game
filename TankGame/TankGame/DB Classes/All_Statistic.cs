@@ -90,15 +90,16 @@ namespace TankGame.DB_Classes
             return res;
         }
 
-        public All_Statistic ReadByID()
+        public All_Statistic ReadByID(int id)
         {
             All_Statistic res = new All_Statistic();
 
             using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
                 connection.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM All_Statistic", connection))
+                using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM All_Statistic WHERE ID = @id", connection))
                 {
+                    cmd.Parameters.Add(new SQLiteParameter("@id", id));
                     using (SQLiteDataReader r = cmd.ExecuteReader())
                     {
                         while (r.Read())
