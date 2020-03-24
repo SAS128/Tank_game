@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace TankGame
 {
+    enum eDirection { NULL, LEFT, TOP, RIGHT, BOT };
     abstract class PlayerObject
     {
-        enum eDirection {NULL, LEFT, TOP, RIGHT, BOT};
+        protected eDirection direction;
         protected Point point;
         protected uint speed;
         public abstract void Move();
