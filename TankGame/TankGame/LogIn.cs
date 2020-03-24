@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +28,13 @@ namespace TankGame
         {
             StartWindow frm1 = new StartWindow();
             frm1.Show();
+        }
+
+        private void CreateAccoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new CreateAccount().ShowDialog(this);
+            this.Show();
         }
     }
 }

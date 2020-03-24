@@ -28,5 +28,10 @@ namespace TankGame
             frm1.Show();
             //this.Hide();
         }
+
+        private void BackToLogInBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
