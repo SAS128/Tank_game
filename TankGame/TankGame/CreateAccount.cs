@@ -16,5 +16,17 @@ namespace TankGame
         {
             InitializeComponent();
         }
+        private void BackToLoginClick(object sender, EventArgs e)
+        {
+            LogIn frm = new LogIn();
+            frm.Show();
+            //this.Hide();
+        }
+        private void DoneCreateClick(object sender, EventArgs e)
+        {
+            StartWindow frm = new StartWindow();
+            frm.Show();
+            //this.Hide();
+        }
     }
 }

@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace TankGame
 {
-    public partial class LogIn : Form
+    public partial class StartWindow : Form
     {
-        public LogIn()
+        public StartWindow()
         {
             InitializeComponent();
-        }
-
-        private void CreateAccountClick(object sender, EventArgs e)
-        {
-            CreateAccount frm = new CreateAccount();
-            frm.Show();
-            this.Hide();
         }
     }
 }

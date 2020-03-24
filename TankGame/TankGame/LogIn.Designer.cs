@@ -59,11 +59,11 @@ namespace TankGame
             LogInLabel.Location = new System.Drawing.Point(85, 10);
 
 
-            LoginLabel = new Label();
-            LoginLabel.ForeColor = System.Drawing.Color.White;
-            LoginLabel.Text = "Login:";
-            LoginLabel.Size = new System.Drawing.Size(50, 30);
-            LoginLabel.Location = new System.Drawing.Point(30, 70);
+            UserLoginLabel = new Label();
+            UserLoginLabel.ForeColor = System.Drawing.Color.White;
+            UserLoginLabel.Text = "Login:";
+            UserLoginLabel.Size = new System.Drawing.Size(50, 30);
+            UserLoginLabel.Location = new System.Drawing.Point(30, 70);
 
 
             PasswordLabel = new Label();
@@ -91,7 +91,7 @@ namespace TankGame
             this.Controls.Add(CreateAccoutBtn);
 
             this.Controls.Add(LogInLabel);
-            this.Controls.Add(LoginLabel);
+            this.Controls.Add(UserLoginLabel);
             this.Controls.Add(PasswordLabel);
 
             this.Controls.Add(LoginTextBox);
@@ -101,7 +101,7 @@ namespace TankGame
         Button CreateAccoutBtn;
 
         Label LogInLabel;
-        Label LoginLabel;
+        Label UserLoginLabel;
         Label PasswordLabel;
 
         TextBox LoginTextBox;
