@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="PlayerObject.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tank.cs" />
     <Compile Include="Obstacle.cs" />

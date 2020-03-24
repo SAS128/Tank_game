@@ -10,8 +10,8 @@ namespace TankGame
     abstract class PlayerObject
     {
         enum eDirection {NULL, LEFT, TOP, RIGHT, BOT};
-        Point point;
-        uint speed;
+        protected Point point;
+        protected uint speed;
         public abstract void Move();
     }
 }
