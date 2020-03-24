@@ -25,5 +25,7 @@ namespace TankGame.DB_Classes
         public int LongBattleCount { get; set; }
 
         public int Statistic { get; set; }
+
+    
     }
 }
