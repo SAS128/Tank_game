@@ -42,6 +42,7 @@ namespace TankGame
             EnterBtn.Location = new System.Drawing.Point(30,170);
             EnterBtn.BackColor = System.Drawing.ColorTranslator.FromHtml("#283227");
             EnterBtn.ForeColor = System.Drawing.Color.White;
+            EnterBtn.Click += EnterClick;
 
             CreateAccoutBtn = new Button();
             CreateAccoutBtn.Text = "Create Account";

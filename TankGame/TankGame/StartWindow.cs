@@ -15,6 +15,8 @@ namespace TankGame
         public StartWindow()
         {
             InitializeComponent();
+            string nickname = "User";
+            GreetingLabel.Text = $"Hello, {nickname}";
         }
     }
 }

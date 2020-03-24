@@ -24,8 +24,8 @@ namespace TankGame
         }
         private void DoneCreateClick(object sender, EventArgs e)
         {
-            StartWindow frm = new StartWindow();
-            frm.Show();
+            StartWindow frm1 = new StartWindow();
+            frm1.Show();
             //this.Hide();
         }
     }

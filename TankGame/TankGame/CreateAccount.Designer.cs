@@ -46,9 +46,9 @@ namespace TankGame
             // 
             this.DoneCreateAccoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.DoneCreateAccoutBtn.ForeColor = System.Drawing.Color.White;
-            this.DoneCreateAccoutBtn.Location = new System.Drawing.Point(216, 261);
+            this.DoneCreateAccoutBtn.Location = new System.Drawing.Point(203, 261);
             this.DoneCreateAccoutBtn.Name = "DoneCreateAccoutBtn";
-            this.DoneCreateAccoutBtn.Size = new System.Drawing.Size(50, 30);
+            this.DoneCreateAccoutBtn.Size = new System.Drawing.Size(63, 30);
             this.DoneCreateAccoutBtn.TabIndex = 1;
             this.DoneCreateAccoutBtn.Text = "Done";
             this.DoneCreateAccoutBtn.UseVisualStyleBackColor = false;
@@ -59,7 +59,7 @@ namespace TankGame
             this.BackToLogInBtn.ForeColor = System.Drawing.Color.White;
             this.BackToLogInBtn.Location = new System.Drawing.Point(33, 261);
             this.BackToLogInBtn.Name = "BackToLogInBtn";
-            this.BackToLogInBtn.Size = new System.Drawing.Size(50, 30);
+            this.BackToLogInBtn.Size = new System.Drawing.Size(57, 30);
             this.BackToLogInBtn.TabIndex = 0;
             this.BackToLogInBtn.Text = "Back";
             this.BackToLogInBtn.UseVisualStyleBackColor = false;
@@ -70,7 +70,7 @@ namespace TankGame
             this.CreateLabel.ForeColor = System.Drawing.Color.White;
             this.CreateLabel.Location = new System.Drawing.Point(36, 9);
             this.CreateLabel.Name = "CreateLabel";
-            this.CreateLabel.Size = new System.Drawing.Size(230, 50);
+            this.CreateLabel.Size = new System.Drawing.Size(255, 50);
             this.CreateLabel.TabIndex = 2;
             this.CreateLabel.Text = "Create Account";
             // 

@@ -21,7 +21,12 @@ namespace TankGame
         {
             CreateAccount frm = new CreateAccount();
             frm.Show();
-            this.Hide();
+            //this.Hide();
+        }
+        private void EnterClick(object sender, EventArgs e)
+        {
+            StartWindow frm1 = new StartWindow();
+            frm1.Show();
         }
     }
 }
