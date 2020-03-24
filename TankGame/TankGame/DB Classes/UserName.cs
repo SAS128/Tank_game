@@ -12,7 +12,10 @@ namespace TankGame.DB_Classes
 
         public string NikName { get; set; }
 
+        public string Mail { get; set; }
+
         public int UserTableID { get; set; }
+
 
     }
 }
