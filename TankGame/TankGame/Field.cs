@@ -6,15 +6,15 @@ namespace TankGame
     {
         public string FieldName { get; set; }
 
-        public List<FieldObject> fieldobjects;
+        public FieldObject[,] fieldobjects;
 
         public Field()
         {
-            fieldobjects = new List<FieldObject>();
+            fieldobjects =new FieldObject[40,40];
             FieldName = "New field";
         }
 
-        public Field(string name, List<FieldObject> objts)
+        public Field(string name, FieldObject[,] objts)
         {
             FieldName = name;
             fieldobjects = objts;
@@ -22,9 +22,9 @@ namespace TankGame
 
         public void AddFieldObject(FieldObject newobj)
         {
-            fieldobjects.Add(newobj);
+            fieldobjects[0, fieldobjects.Length] = newobj; 
         }
-
+        // :\
 
     }
 }
