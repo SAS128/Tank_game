@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -41,19 +42,104 @@ namespace TankGame
             this.Text = "Form1";
             this.Paint += PntMap;
             listwalls = new List<WallObject>();
-            listwalls.Add(new WallObject(new Point(wallwidth, 0),new Point(wallwidth, this.Height- wallwidth*8)));
-            listwalls.Add(new WallObject(new Point(0, wallwidth),new Point(this.Width, wallwidth)));
-            listwalls.Add(new WallObject(new Point(this.Width- wallwidth*4, 0),new Point(this.Width- wallwidth*4, this.Height- wallwidth*8)));
-            listwalls.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width, this.Height - wallwidth * 8)));
+            listwalls.Add(new WallObject(new Point(wallwidth, 0),new Point(wallwidth, this.Height- wallwidth*7)));
+            listwalls.Add(new WallObject(new Point(0, wallwidth),new Point(this.Width-wallwidth*4, wallwidth)));
+            listwalls.Add(new WallObject(new Point(this.Width- wallwidth*4, 0),new Point(this.Width- wallwidth*4, this.Height- wallwidth*7)));
+            listwalls.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
+            listwalls.Add(new WallObject(new Point(300, 100), new Point(300, 300)));
 
-
+            this.KeyPreview = true;
+            this.KeyDown += KeyTake;
 
 
 
 
         }
+        void RightMove(object sender, PaintEventArgs paintEventArgs)
+        {
 
-        private void PntMap(object sender, PaintEventArgs e)
+            if (CanRightMove() == false)
+            {
+                paintEventArgs.Graphics.FillRectangle(Brushes.White, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+                tank1.pos.X += pacStep;
+                paintEventArgs.Graphics.FillRectangle(Brushes.GreenYellow, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+              
+            }
+        }
+
+        void LeftMove(object sender, PaintEventArgs paintEventArgs)
+        {
+
+            if (CanLeftMove() == false)
+            {
+                paintEventArgs.Graphics.FillRectangle(Brushes.White, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+                
+                tank1.pos.X -= pacStep;
+                paintEventArgs.Graphics.FillRectangle(Brushes.GreenYellow, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+            }
+        }
+
+
+        void UpMove(object sender, PaintEventArgs paintEventArgs)
+        {
+
+            if (CanUpMove() == false)
+            {
+                paintEventArgs.Graphics.FillRectangle(Brushes.White, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+                tank1.pos.Y -= pacStep;
+                paintEventArgs.Graphics.FillRectangle(Brushes.GreenYellow, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+            }
+        }
+
+
+        void DownMove(object sender, PaintEventArgs paintEventArgs)
+        {
+
+            if (CanDownMove() == false)
+            {
+                paintEventArgs.Graphics.FillRectangle(Brushes.White, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+                tank1.pos.Y += pacStep;
+                paintEventArgs.Graphics.FillRectangle(Brushes.GreenYellow, tank1.pos.X, tank1.pos.Y, tank1.Width, tank1.Height);
+
+            }
+        }
+
+        private void KeyTake(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+            {
+                RightMove(sender, new PaintEventArgs(this.CreateGraphics(), new Rectangle()));
+            }
+            else
+            {
+                if (e.KeyCode == Keys.Left)
+                {
+                    LeftMove(sender, new PaintEventArgs(this.CreateGraphics(), new Rectangle()));
+                }
+                else
+                {
+                    if (e.KeyCode == Keys.Up)
+                    {
+                        UpMove(sender, new PaintEventArgs(this.CreateGraphics(), new Rectangle()));
+                    }
+                    else
+                    {
+                        if (e.KeyCode == Keys.Down)
+                        {
+                            DownMove(sender, new PaintEventArgs(this.CreateGraphics(), new Rectangle()));
+                        }
+                    }
+                }
+            }
+        }
+
+ 
+    private void PntMap(object sender, PaintEventArgs e)
         {
             foreach (var item in listwalls)
             {
@@ -63,7 +149,7 @@ namespace TankGame
 
         GameHeroObject tank1 = new GameHeroObject();
 
-        int pacStep=5;
+        int pacStep=2;
         int wallwidth = 5;
 
 
@@ -81,7 +167,7 @@ namespace TankGame
             {
                 if ((tank1.pos.Y + tank1.Height >= item.first.Y && tank1.pos.Y <= item.second.Y) || (item.first.Y == item.second.Y && item.first.Y + wallwidth > tank1.pos.Y && item.first.Y - wallwidth < tank1.pos.Y + tank1.Width))
                 {
-                    if (tank1.pos.X + tank1.Width <= item.first.X && (tank1.pos.X + tank1.Width + pacStep) >= item.first.X)
+                    if (tank1.pos.X + tank1.Width <= item.first.X && (tank1.pos.X + tank1.Width + pacStep) >= item.first.X-wallwidth)
                     {
                         maperror = true;
                         break;
@@ -95,7 +181,7 @@ namespace TankGame
 
         }
 
-        private bool UpMove()
+        private bool CanUpMove()
         {
             bool maperror = false;
             foreach (var item in listwalls)
@@ -109,7 +195,7 @@ namespace TankGame
                     }
                 }
 
-                if ((item.first.X == item.second.X && item.second.X + wallwidth > item.first.X && item.second.X - wallwidth < item.first.X + item.first.X))
+                if ((item.first.X == item.second.X && item.second.X + wallwidth > tank1.pos.X && item.second.X - wallwidth < tank1.pos.X + tank1.Width))
                 {
                     if ((tank1.pos.Y >= item.second.Y && (tank1.pos.Y - pacStep) <= item.second.Y))
                     {
@@ -124,21 +210,21 @@ namespace TankGame
 
         }
 
-        private bool DownMove(object sender, PaintEventArgs e)
+        private bool CanDownMove()
         {
             bool maperror = false;
             foreach (var item in listwalls)
             {
                 if ((tank1.pos.X + tank1.Width >= item.first.X && tank1.pos.X <= item.second.X))
                 {
-                    if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Width + pacStep) >= item.first.Y))
+                    if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Width + pacStep) >= item.first.Y-wallwidth))
                     {
                         maperror = true;
                         break;
                     }
                 }
 
-                if ((item.first.X == item.second.X && item.first.X - wallwidth > tank1.pos.X && item.first.X + wallwidth < tank1.pos.X + tank1.Width))
+                if ((item.first.X == item.second.X && item.first.X - wallwidth <= tank1.pos.X+tank1.Width && item.first.X + wallwidth < tank1.pos.X))
                 {
                     if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Height + pacStep) >= item.first.Y))
                     {
@@ -152,14 +238,14 @@ namespace TankGame
         }
 
 
-        private bool LeftMove(object sender, PaintEventArgs e)
+        private bool CanLeftMove()
         {
             bool maperror = false;
             foreach (var item in listwalls)
             {
                 if ((tank1.pos.Y + tank1.Height >= item.first.Y && tank1.pos.Y <= item.second.Y) || (item.first.Y == item.second.Y && item.first.Y + 5 > tank1.pos.Y && item.first.Y - 5 < tank1.pos.Y + tank1.Height))
                 {
-                    if (tank1.pos.X >= item.second.X && (tank1.pos.X - pacStep) <= item.second.X)
+                    if (tank1.pos.X >= item.second.X && (tank1.pos.X - pacStep) <= item.second.X+wallwidth)
                     {
                         maperror = true;
                         break;
@@ -173,19 +259,34 @@ namespace TankGame
 
 
         #endregion
+        class MyPoint
+        {
+           public int X { get; set; }
+           public int Y { get; set; }
+            public MyPoint()
+            {
+                X = 0;
+                Y = 0;
+            }
 
+            public MyPoint(int x,int y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
 
         class GameHeroObject
         {
-            public Point pos { get; set; }
+            public MyPoint pos { get; set; }
             public int Width { get; set; }
             public int Height { get; set; }
 
             public GameHeroObject()
             {
-                pos = new Point(1, 1);
-                Width = 10;
-                Height = 10;
+                pos = new MyPoint(200, 20);
+                Width = 30;
+                Height = 30;
             }
 
 
