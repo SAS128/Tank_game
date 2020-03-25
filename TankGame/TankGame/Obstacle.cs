@@ -18,7 +18,7 @@ namespace TankGame
             secondpos = second;
         }
 
-        public override void Collision(ref FieldObject sender)
+        public override void Collision(ref object sender)
         {
             if (sender.GetType() == (new Bullet()).GetType())
             {

@@ -24,7 +24,7 @@ namespace TankGame
 
         public override void Move()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
