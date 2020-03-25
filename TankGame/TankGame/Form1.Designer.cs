@@ -222,7 +222,7 @@ namespace TankGame
             {
                 if ((tank1.pos.X + tank1.Width >= item.first.X && tank1.pos.X <= item.second.X))
                 {
-                    if ((tank1.pos.Y >= item.first.Y && (tank1.pos.Y - pacStep) <= item.first.Y))
+                    if ((tank1.pos.Y >= item.first.Y+wallwidth && (tank1.pos.Y - pacStep) <= item.first.Y+wallwidth))
                     {
                         maperror = true;
                         break;
