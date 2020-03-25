@@ -251,14 +251,14 @@ namespace TankGame
             {
                 if ((tank1.pos.X + tank1.Width >= item.first.X && tank1.pos.X <= item.second.X))
                 {
-                    if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Width + pacStep) >= item.first.Y-wallwidth))
+                    if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Height + pacStep) >= item.first.Y-wallwidth))
                     {
                         maperror = true;
                         break;
                     }
                 }
 
-                if ((item.first.X == item.second.X && item.first.X - wallwidth <= tank1.pos.X+tank1.Width && item.first.X + wallwidth < tank1.pos.X))
+                if ((item.first.X == item.second.X && item.first.X - wallwidth <= tank1.pos.X+tank1.Width && item.first.X + wallwidth > tank1.pos.X))
                 {
                     if ((tank1.pos.Y + tank1.Height <= item.first.Y && (tank1.pos.Y + tank1.Height + pacStep) >= item.first.Y))
                     {
