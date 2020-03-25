@@ -6,7 +6,8 @@ namespace TankGame
     class Tank : PlayerObject
     {
         public Point LastPosition { get; set; }
-        int Hpoints { get; set; }
+        public int MaxHealthPoints { get; private set; }
+        public int CurrentHealthPoints { get; set; }
         int Damage { get; set; }
         int Weight { get; set; }//= задержка в милесикундах(чем болье параметр веса- тем больше задержка-тем медленнее танк)
         public Tank()
@@ -35,7 +36,8 @@ namespace TankGame
         }
         public override void Move()
         {
-            throw new NotImplementedException();
+            LastPosition = point;
+            base.Move();
         }
         public Projectile Shoot()
         {

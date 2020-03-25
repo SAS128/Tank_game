@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 namespace TankGame
 {
     enum eDirection { NULL, LEFT, TOP, RIGHT, BOT };
-    abstract class PlayerObject
+    class PlayerObject : FieldObject
     {
         public eDirection direction;
-        public Point point { get; protected set; }
         protected uint speed;
-        public abstract void Move();
+        public virtual void Move()
+        {
+            point = GetNextPoint();
+        }
         protected Point GetNextPoint()
         {
             Point pos = point;
