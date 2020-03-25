@@ -33,20 +33,23 @@ namespace TankGame
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         /// 
+        
+        
         List<WallObject> listwalls;
+
+
+        
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Text = "Form1";
             this.Paint += PntMap;
-            listwalls = new List<WallObject>();
-            listwalls.Add(new WallObject(new Point(wallwidth, 0),new Point(wallwidth, this.Height- wallwidth*7)));
-            listwalls.Add(new WallObject(new Point(0, wallwidth),new Point(this.Width-wallwidth*4, wallwidth)));
-            listwalls.Add(new WallObject(new Point(this.Width- wallwidth*4, 0),new Point(this.Width- wallwidth*4, this.Height- wallwidth*7)));
-            listwalls.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
-            listwalls.Add(new WallObject(new Point(300, 100), new Point(300, 300)));
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            listwalls = GetMap("default");
+
 
             this.KeyPreview = true;
             this.KeyDown += KeyTake;
@@ -55,6 +58,37 @@ namespace TankGame
 
 
         }
+
+        List<WallObject> GetMap(string key = null)
+        {
+            var list = new List<WallObject>();
+            switch(key)
+            {
+                case "default":
+                    list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, wallwidth), new Point(this.Width - wallwidth * 4, wallwidth)));
+                    list.Add(new WallObject(new Point(this.Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
+                    list.Add(new WallObject(new Point(100,100), new Point(100,250)));
+                    list.Add(new WallObject(new Point(100, 100), new Point(250, 100)));
+                    list.Add(new WallObject(new Point(100, 350), new Point(100, 500)));
+                    list.Add(new WallObject(new Point(100, 500), new Point(250, 500)));
+                    list.Add(new WallObject(new Point(550, 100), new Point(700, 100)));
+                    list.Add(new WallObject(new Point(700, 100), new Point(700, 250)));
+                    list.Add(new WallObject(new Point(700, 350), new Point(700, 500)));
+                    list.Add(new WallObject(new Point(550, 500), new Point(700, 500)));
+                    break;
+                default:
+                    list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, wallwidth), new Point(this.Width - wallwidth * 4, wallwidth)));
+                    list.Add(new WallObject(new Point(this.Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
+                    break;
+            }
+
+            return list;
+        }
+
         void RightMove(object sender, PaintEventArgs paintEventArgs)
         {
 
