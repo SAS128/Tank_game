@@ -15,7 +15,7 @@ namespace TankGame.DB_Classes
         public string Mail { get; set; }
         public int UserTableID { get; set; }
 
-        public UserName Insert(int NikName, int Mail, int UserTableID)
+        public UserName Insert(string NikName, string Mail, int UserTableID)
         {
             UserName username = new UserName();
             using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
@@ -57,8 +57,8 @@ namespace TankGame.DB_Classes
                             username.Add(new UserName()
                             {
                                 ID = sqlitedatareader.GetInt32(0),
-                                NikName = sqlitedatareader.GetChars(1),
-                                Mail = sqlitedatareader.GetChars(2),
+                                NikName = sqlitedatareader.GetString(1),
+                                Mail = sqlitedatareader.GetString(2),
                                 UserTableID = sqlitedatareader.GetInt32(3)
                             });
                         }
@@ -84,8 +84,8 @@ namespace TankGame.DB_Classes
                             username = new UserName()
                             {
                                 ID = sqlitedatareader.GetInt32(0),
-                                NikName = sqlitedatareader.GetChars(1),
-                                Mail = sqlitedatareader.GetChars(2),
+                                NikName = sqlitedatareader.GetString(1),
+                                Mail = sqlitedatareader.GetString(2),
                                 UserTableID = sqlitedatareader.GetInt32(3)
                             };
                         }
