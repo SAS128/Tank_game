@@ -183,7 +183,7 @@ namespace TankGame
 
         GameHeroObject tank1 = new GameHeroObject();
 
-        int pacStep=2;
+        int pacStep=10;
         int wallwidth = 5;
 
 
