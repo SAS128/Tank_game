@@ -338,8 +338,17 @@ namespace TankGame
 
             public WallObject(Point first, Point second)
             {
-                this.first = new Point(first.X, first.Y);
-                this.second = new Point(second.X, second.Y);
+                if (first.X > second.X)
+                {
+                    this.first = new Point(second.X, second.Y);
+                    this.second = new Point(first.X, first.Y);
+                }
+                else
+                {
+                    this.first = new Point(first.X, first.Y);
+                    this.second = new Point(second.X, second.Y);
+                }
+               
             }
 
         }
