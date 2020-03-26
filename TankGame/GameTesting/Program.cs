@@ -1,4 +1,5 @@
-﻿using TankGame.Logic;
+﻿using System;
+using TankGame.Logic;
 namespace GameTesting
 {
     class Program
@@ -8,7 +9,7 @@ namespace GameTesting
             Player player1 = new Player(1, new Point(1, 1));
             Player player2 = new Player(1, new Point(3, 3));
             GameMode1V1 room = new GameMode1V1(player1, player2);
-            for(int i=0; i<1000; i++)
+            for(int i=0; i<120; i++)
             {
                 //player1.MoveTank(eDirection.LEFT);
                 //Console.WriteLine(player1.tank.point.ToString());
@@ -21,6 +22,7 @@ namespace GameTesting
                 player1.MoveTank(eDirection.TOP);
                 Console.WriteLine(player1.tank.point.ToString());
             }
+            Console.Read();
         }
 
     }

@@ -6,25 +6,24 @@ namespace TankGame
     {
         public string FieldName { get; set; }
 
-        public FieldObject[,] fieldobjects;
+        public FieldObject [,] fieldobjects;
 
         public Field()
         {
-            fieldobjects =new FieldObject[40,40];
-            FieldName = "New field";
+            fieldobjects = new FieldObject[10,10];
+            FieldName = "default";
         }
 
-        public Field(string name, FieldObject[,] objts)
+        public Field(string name, FieldObject[,] objects)
         {
             FieldName = name;
-            fieldobjects = objts;
+            fieldobjects = objects;
         }
 
         public void AddFieldObject(FieldObject newobj)
         {
             fieldobjects[0, fieldobjects.Length] = newobj; 
         }
-        // :\
 
     }
 }
