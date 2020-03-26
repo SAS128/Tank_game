@@ -43,7 +43,7 @@ namespace TankGame
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(800, 800);
             this.Text = "Form1";
             this.Paint += PntMap;
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -62,30 +62,32 @@ namespace TankGame
         List<WallObject> GetMap(string key = null)
         {
             var list = new List<WallObject>();
-            switch(key)
+            switch (key)
             {
                 case "default":
                     list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
                     list.Add(new WallObject(new Point(0, wallwidth), new Point(this.Width - wallwidth * 4, wallwidth)));
-                    list.Add(new WallObject(new Point(this.Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
-                    list.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
-                    list.Add(new WallObject(new Point(100,100), new Point(100,250)));
-                    list.Add(new WallObject(new Point(100, 100), new Point(250, 100)));
-                    list.Add(new WallObject(new Point(100, 350), new Point(100, 500)));
-                    list.Add(new WallObject(new Point(100, 500), new Point(250, 500)));
-                    list.Add(new WallObject(new Point(550, 100), new Point(700, 100)));
-                    list.Add(new WallObject(new Point(700, 100), new Point(700, 250)));
-                    list.Add(new WallObject(new Point(700, 350), new Point(700, 500)));
-                    list.Add(new WallObject(new Point(550, 500), new Point(700, 500)));
+                    list.Add(new WallObject(new Point(Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
+                    list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8, Height / 8 + Height / 4)));
+                    list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8 + Width / 4, Height / 8)));
+                    //list.Add(new WallObject(new Point(Width / 8, Height / 4 + Height / 8), new Point(Width / 8, Height / 4 + Height / 8)));
+                    //list.Add(new WallObject(new Point(100, 500), new Point(250, 500)));
+                    list.Add(new WallObject(new Point(Width - Width / 8, Height / 8), new Point(Width - Width / 4 - Width/8, Height / 8)));
+                    //list.Add(new WallObject(new Point(700, 100), new Point(700, 250)));
+                    //list.Add(new WallObject(new Point(700, 350), new Point(700, 500)));
+                    //list.Add(new WallObject(new Point(550, 500), new Point(700, 500)));
                     break;
-                default:
+                case null:
                     list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
                     list.Add(new WallObject(new Point(0, wallwidth), new Point(this.Width - wallwidth * 4, wallwidth)));
                     list.Add(new WallObject(new Point(this.Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
                     list.Add(new WallObject(new Point(0, this.Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
                     break;
+                default:
+                    list = null;
+                    break;
             }
-
             return list;
         }
 
@@ -182,7 +184,6 @@ namespace TankGame
         }
 
         GameHeroObject tank1 = new GameHeroObject();
-
         int pacStep=10;
         int wallwidth = 5;
 
@@ -323,12 +324,7 @@ namespace TankGame
                 Height = 30;
             }
 
-
-
-
-
         }
-
 
         class WallObject
         {
