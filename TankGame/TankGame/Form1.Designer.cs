@@ -1,4 +1,8 @@
-﻿namespace TankGame
+﻿using System;
+using System.Data.SQLite;
+using System.IO;
+
+namespace TankGame
 {
     partial class Form1
     {
@@ -34,51 +38,69 @@
             this.Text = "Form1";
         }
 
-        #endregion
+        private static void CreateDB()
+        {
+            if (File.Exists(databaseName) != true)
+            {
+                SQLiteConnection.CreateFile(databaseName);
+            }           
+        }
+        static string databaseName = @"Local_User_DB_Tanks.sqlite";
+
+        private static void CreateTable()
+        {
+            SQLiteConnection connection =
+            new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            SQLiteCommand command =
+                new SQLiteCommand("CREATE TABLE StatisticTable (ID int identity primary key," +
+                "[NickNameEnemyPlayer] varchar(21) unique,[IsWin] bit," +
+                "[IsLose] bit,[LenghBattle] datetime); ", connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+
+
+            SQLiteConnection connectionUser =
+            new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            SQLiteCommand commandUser =
+                new SQLiteCommand("create table LocalUserTable(ID int identity primary key," +
+                "[NickNamePlayer] varchar(21) unique,[Login] varchar(21) unique," +
+                "[UserIdStatictic] int,[LenghBattle] datetime," +
+                "constraint FK_LocalUser_to_Statistic foreign key([UserIdStatictic]) references StatisticTable(Id) ); ", connectionUser);
+            connectionUser.Open();
+            commandUser.ExecuteNonQuery();
+            connectionUser.Close();
+
+        }
+        private static void InsertData_to_TableSttistic()
+        {
+            SQLiteConnection connection =
+            new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand($"INSERT INTO StatisticTable (ID, [NickNameEnemyPlayer],[IsWin],[IsLose],[LenghBattle]) VALUES (1, 'Вася','1','0','{DateTime.Now.ToShortTimeString()}');", connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        
+        }
+        private static void Show()
+        {
+            SQLiteConnection connection =
+                new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand("select*from StatisticTable", connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+          
+
+            connection.Close();
+  
+        }
     }
-
-    //private static void CreateDB()
-    //{
-    //    SQLiteConnection.CreateFile(databaseName);
-    //    Console.WriteLine(File.Exists(databaseName) ? "База данных создана" : "Возникла ошиюка при создании базы данных");
-    //}
-    //public static string databaseName = @"G:\Проекты\CreateDataBase_Console\CreateDataBase_Console\bin\Debug\Local_User_DB_Tanks.db";
-    //public void CreateBd()
-    //{
-       
-   
-   
-//    private static void CreateTable()
-//    {
-//        SQLiteConnection connection =
-//        new SQLiteConnection(string.Format("Data Source={0};", databaseName));
-//        SQLiteCommand command =
-//            new SQLiteCommand("CREATE TABLE StatisticTable (ID int identity primary key," +
-//            "[NickNameEnemyPlayer] varchar(21) unique,[IsWin] bit," +
-//            "[IsLose] bit,[LenghBattle] datetime); ", connection);
-//        connection.Open();
-//        command.ExecuteNonQuery();
-//        connection.Close();
-
-
-//        SQLiteConnection connectionUser =
-//        new SQLiteConnection(string.Format("Data Source={0};", databaseName));
-//        SQLiteCommand commandUser =
-//            new SQLiteCommand("create table LocalUserTable(ID int identity primary key," +
-//            "[NickNamePlayer] varchar(21) unique,[Login] varchar(21) unique," +
-//            "[UserIdStatictic] int,[LenghBattle] datetime," +
-//            "constraint FK_LocalUser_to_Statistic foreign key([UserIdStatictic]) references StatisticTable(Id) ); ", connectionUser);
-//        connectionUser.Open();
-//        commandUser.ExecuteNonQuery();
-//        connectionUser.Close();
-
-//    }
-//}
-
-    //}
-//}
-
- 
-
+    #endregion
 }
+
+
+
+    
+
+
 
