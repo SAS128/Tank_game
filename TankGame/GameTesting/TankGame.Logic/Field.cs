@@ -9,8 +9,7 @@
         public Point size { get; set; }
         public Field()
         {
-            size.X = 40;
-            size.Y = 40;
+            size = new Point(40, 40);
             fieldobjects =new FieldObject[40,40];
             FieldName = "New field";
         }

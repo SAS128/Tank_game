@@ -33,7 +33,8 @@
         }
         public override void Move()
         {
-            LastPosition = point;
+            LastPosition.X = point.X;
+            LastPosition.Y = point.Y;
             base.Move();
         }
         public Projectile Shoot()

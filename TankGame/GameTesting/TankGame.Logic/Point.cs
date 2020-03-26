@@ -9,5 +9,12 @@
             X = x;
             Y = y;
         }
+        public override string ToString()
+        {
+            string res = X.ToString();
+            res += ":";
+            res += Y.ToString();
+            return res;
+        }
     }
 }
