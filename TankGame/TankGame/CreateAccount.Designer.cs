@@ -53,6 +53,7 @@ namespace TankGame
             this.DoneCreateAccoutBtn.TabIndex = 1;
             this.DoneCreateAccoutBtn.Text = "Done";
             this.DoneCreateAccoutBtn.UseVisualStyleBackColor = false;
+            this.DoneCreateAccoutBtn.Click += DoneCreateClick;
             // 
             // BackToLogInBtn
             // 
@@ -77,6 +78,7 @@ namespace TankGame
             this.CreateLabel.Size = new System.Drawing.Size(191, 41);
             this.CreateLabel.TabIndex = 2;
             this.CreateLabel.Text = "Create Account";
+           
             // 
             // UserGetLoginLabel
             // 

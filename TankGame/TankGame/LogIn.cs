@@ -22,12 +22,7 @@ namespace TankGame
         {
             CreateAccount frm = new CreateAccount();
             frm.Show();
-            //this.Hide();
-        }
-        private void EnterClick(object sender, EventArgs e)
-        {
-            StartWindow frm1 = new StartWindow();
-            frm1.Show();
+            this.Close();
         }
 
         private void CreateAccoutBtn_Click(object sender, EventArgs e)
@@ -35,6 +30,12 @@ namespace TankGame
             this.Hide();
             new CreateAccount().ShowDialog(this);
             this.Show();
+        }
+        private void EnterBtn_Click(object sender, EventArgs e)
+        {
+            StartWindow frm = new StartWindow();
+            frm.Show();
+            this.Hide();
         }
     }
 }

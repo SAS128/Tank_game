@@ -48,6 +48,7 @@ namespace TankGame
             this.EnterBtn.TabIndex = 0;
             this.EnterBtn.Text = "Enter";
             this.EnterBtn.UseVisualStyleBackColor = false;
+            this.EnterBtn.Click += EnterBtn_Click;
             // 
             // CreateAccoutBtn
             // 

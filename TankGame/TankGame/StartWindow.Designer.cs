@@ -46,6 +46,7 @@ namespace TankGame
             this.GameInfoPanel.Location = new System.Drawing.Point(200, 10);
             this.GameInfoPanel.Name = "GameInfoPanel";
             this.GameInfoPanel.Size = new System.Drawing.Size(576, 428);
+            GameInfoPanel.Visible = false;
             this.GameInfoPanel.TabIndex = 0;
             // 
             // GreetingLabel
@@ -100,6 +101,7 @@ namespace TankGame
             this.AuthorsBtn.TabIndex = 5;
             this.AuthorsBtn.Text = "Authors";
             this.AuthorsBtn.UseVisualStyleBackColor = false;
+            this.AuthorsBtn.Click += AuthorsBtnClick;
             // 
             // ExitBtn
             // 
@@ -111,6 +113,7 @@ namespace TankGame
             this.ExitBtn.TabIndex = 6;
             this.ExitBtn.Text = "Exit";
             this.ExitBtn.UseVisualStyleBackColor = false;
+            this.ExitBtn.Click += ExitBtnClk;
             // 
             // StartWindow
             // 
@@ -130,6 +133,12 @@ namespace TankGame
             this.ResumeLayout(false);
 
         }
+
+        private void AuthorsBtn_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         Panel GameInfoPanel;
 
         Label GreetingLabel;
