@@ -3,16 +3,19 @@
     class Obstacle : FieldObject
     {
         Point secondpos { get; set; }
+       
         public Obstacle()
         {
             point = new Point(0, 0);
             secondpos = new Point(0, 0);
+         
         }
 
         public Obstacle(Point first,Point second)
         {
             point = first;
             secondpos = second;
+        
         }
 
         public override object Collision(object sender)

@@ -14,7 +14,7 @@ namespace TankGame
         {
             point = new Point(5,5);
             LastPosition = point;
-            Hpoints = 300;
+            MaxHealthPoints = 300;
             Damage = 100;
             Weight = 300;
         }
@@ -22,7 +22,7 @@ namespace TankGame
         {
             point = tankpos;
             LastPosition = point;
-            Hpoints = 300;
+            MaxHealthPoints = 300;
             Damage = 100;
             Weight = 300;
         }
@@ -30,7 +30,7 @@ namespace TankGame
         {
             point = tankpos;
             LastPosition = point;
-            this.Hpoints = Hpoints;
+            this.MaxHealthPoints = Hpoints;
            this.Damage = Damage;
            this.Weight = Weight;
         }
