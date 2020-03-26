@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Threading.Tasks;
 using System.Configuration;
-
 namespace TankGame.DB_Classes
 {
     class UserTable
@@ -17,10 +12,10 @@ namespace TankGame.DB_Classes
         public UserTable Insert(int LoginId, int PasswordId)
         {
             UserTable usertable = new UserTable();
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO UserTable(LoginId,PasswordId) VALUES(@lid,@pid)", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO UserTable(LoginId,PasswordId) VALUES(@lid,@pid)", sqliteconnection))
                 {
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@lid", LoginId));
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@pid", PasswordId));
@@ -42,10 +37,10 @@ namespace TankGame.DB_Classes
         {
             List<UserTable> usertable = new List<UserTable>();
 
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserTable", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserTable", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
@@ -68,10 +63,10 @@ namespace TankGame.DB_Classes
         {
             UserTable usertable = new UserTable();
 
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserTable", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserTable", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {

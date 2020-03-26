@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Configuration;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TankGame.DB_Classes
 {
     class UserName
@@ -18,17 +13,16 @@ namespace TankGame.DB_Classes
         public UserName Insert(string NikName, string Mail, int UserTableID)
         {
             UserName username = new UserName();
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO UserName(NikName,Mail,UserTableID) VALUES(@nn,@m,@utid)", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO UserName(NikName,Mail,UserTableID) VALUES(@nn,@m,@utid)", sqliteconnection))
                 {
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@nn", NikName));
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@m", Mail));
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@utid", UserTableID));
                     sqlitecommand.ExecuteNonQuery();
                     sqlitecommand.CommandText = "SELECT ID FROM UserName ORDER BY ID DESC LIMIT 1";
-
                     username = new UserName()
                     {
                         NikName = NikName,
@@ -44,11 +38,10 @@ namespace TankGame.DB_Classes
         public List<UserName> ReadAll()
         {
             List<UserName> username = new List<UserName>();
-
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserName", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserName", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
@@ -71,11 +64,10 @@ namespace TankGame.DB_Classes
         public UserName ReadByID()
         {
             UserName username = new UserName();
-
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserName", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM UserName", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {

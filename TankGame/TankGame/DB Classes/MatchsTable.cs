@@ -1,90 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TankGame.DB_Classes
 {
     class MatchsTable
     {
         public int ID { get; set; }
-
         public string NameBattle { get; set; }
-
         public int StaticMatchID { get; set; }
 
         public MatchsTable Insert(int StaticMatchID, string NameBattle)
         {
-            MatchsTable res = new MatchsTable();
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            MatchsTable matchstable = new MatchsTable();
+            using (SQLiteConnection sqlteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO MatchsTable(NameBattle,StaticMatchID,LongBattleCount,User_Statistic) VALUES(@kc,@dc)", connection))
+                sqlteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO MatchsTable(NameBattle,StaticMatchID) VALUES(@nb,@smid)", sqlteconnection))
                 {
-                    cmd.Parameters.Add(new SQLiteParameter("@kc", StaticMatchID));
-                    cmd.Parameters.Add(new SQLiteParameter("@dc", NameBattle));
-                   
-
-                    cmd.ExecuteNonQuery();
-
-                    cmd.CommandText = "SELECT ID FROM MatchsTable ORDER BY ID DESC LIMIT 1";
-
-
-                    res = new MatchsTable()
+                    sqlitecommand.Parameters.Add(new SQLiteParameter("@nb", StaticMatchID));
+                    sqlitecommand.Parameters.Add(new SQLiteParameter("@smid", NameBattle));
+                    sqlitecommand.ExecuteNonQuery();
+                    sqlitecommand.CommandText = "SELECT ID FROM MatchsTable ORDER BY ID DESC LIMIT 1";
+                    matchstable = new MatchsTable()
                     {
                         StaticMatchID = StaticMatchID,
                         NameBattle = NameBattle,
-                        ID = (int)cmd.ExecuteScalar()
+                        ID = (int)sqlitecommand.ExecuteScalar()
                     };
                 }
             }
-            return res;
+            return matchstable;
         }
 
         public List<MatchsTable> ReadAll()
         {
-            List<MatchsTable> res = new List<MatchsTable>();
+            List<MatchsTable> matchstable = new List<MatchsTable>();
 
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqlteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM MatchsTable", connection))
+                sqlteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM MatchsTable", sqlteconnection))
                 {
-                    using (SQLiteDataReader r = cmd.ExecuteReader())
+                    using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
-                        while (r.Read())
+                        while (sqlitedatareader.Read())
                         {
-                            res.Add(new MatchsTable() { ID = r.GetInt32(0), NameBattle = r.GetString(1) , StaticMatchID = r.GetInt32(2) });
+                            matchstable.Add(new MatchsTable()
+                            {
+                                ID = sqlitedatareader.GetInt32(0),
+                                NameBattle = sqlitedatareader.GetString(1) ,
+                                StaticMatchID = sqlitedatareader.GetInt32(2)
+                            });
                         }
                     }
                 }
             }
-            return res;
+            return matchstable;
         }
 
         public MatchsTable ReadByID(int id)
         {
-            MatchsTable  res = new MatchsTable();
+            MatchsTable  matchstable = new MatchsTable();
 
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqlteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM MatchsTable WHERE ID = @id", connection))
+                sqlteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM MatchsTable WHERE ID = @id", sqlteconnection))
                 {
-                    cmd.Parameters.Add(new SQLiteParameter("@id", id));
-                    using (SQLiteDataReader r = cmd.ExecuteReader())
+                    sqlitecommand.Parameters.Add(new SQLiteParameter("@id", id));
+                    using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
-                        while (r.Read())
+                        while (sqlitedatareader.Read())
                         {
-                            res = new MatchsTable() { ID = r.GetInt32(0), NameBattle = r.GetString(1), StaticMatchID = r.GetInt32(2) };
+                            matchstable = new MatchsTable()
+                            {
+                                ID = sqlitedatareader.GetInt32(0),
+                                NameBattle = sqlitedatareader.GetString(1),
+                                StaticMatchID = sqlitedatareader.GetInt32(2)
+                            };
                         }
                     }
                 }
             }
-            return res;
+            return matchstable;
         }
     }
 }

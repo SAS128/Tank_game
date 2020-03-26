@@ -1,41 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TankGame.DB_Classes
 {
     class User_Statistic
     {
         public int ID { get; set; }
-
         public int KillCount { get; set; }
-
         public int DeathCount { get; set; }
-
         public int VictoryCount { get; set; }
-
         public int LooseCount { get; set; }
-
         public int AllCountBattle { get; set; }
-
         public int ShortBattleCount { get; set; }
-
         public int LongBattleCount { get; set; }
-
         public int UserNameId { get; set; }
-
 
         public User_Statistic Insert(int KillCount, int DeathCount, int VictoryCount, int LooseCount, int AllCountBattle, int ShortBattleCount, int LongBattleCount, int UserNameId)
         {
             User_Statistic user_statistic = new User_Statistic();
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO User_Statistic(KillCount,DeathCount,VictoryCount,LooseCount,AllCountBattle,ShortBattleCount,LongBattleCount,UserNameId) VALUES(@kc,@dc,@vc,@lc,@acb,@sbc,@lbc,@unid)", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("INSERT INTO User_Statistic(KillCount,DeathCount,VictoryCount,LooseCount,AllCountBattle,ShortBattleCount,LongBattleCount,UserNameId) VALUES(@kc,@dc,@vc,@lc,@acb,@sbc,@lbc,@unid)", sqliteconnection))
                 {
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@kc", KillCount));
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@dc", DeathCount));
@@ -47,7 +33,6 @@ namespace TankGame.DB_Classes
                     sqlitecommand.Parameters.Add(new SQLiteParameter("@unid", UserNameId));
                     sqlitecommand.ExecuteNonQuery();
                     sqlitecommand.CommandText = "SELECT ID FROM User_Statistic ORDER BY ID DESC LIMIT 1";
-
                     user_statistic = new User_Statistic()
                     {
                         KillCount = KillCount,
@@ -68,11 +53,10 @@ namespace TankGame.DB_Classes
         public List<User_Statistic> ReadAll()
         {
             List<User_Statistic> user_statistic = new List<User_Statistic>();
-
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM User_Statistic", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM User_Statistic", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
@@ -100,11 +84,10 @@ namespace TankGame.DB_Classes
         public User_Statistic ReadByID()
         {
             User_Statistic user_statistic = new User_Statistic();
-
-            using (SQLiteConnection connection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
+            using (SQLiteConnection sqliteconnection = new SQLiteConnection(ConfigurationManager.AppSettings.Get("Path")))
             {
-                connection.Open();
-                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM User_Statistic", connection))
+                sqliteconnection.Open();
+                using (SQLiteCommand sqlitecommand = new SQLiteCommand("SELECT * FROM User_Statistic", sqliteconnection))
                 {
                     using (SQLiteDataReader sqlitedatareader = sqlitecommand.ExecuteReader())
                     {
