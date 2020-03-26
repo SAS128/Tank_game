@@ -2,7 +2,6 @@
 {
     class Tank : PlayerObject
     {
-        public Point LastPosition { get; set; }
         public int MaxHealthPoints { get; private set; }
         public int CurrentHealthPoints { get; set; }
         int Damage { get; set; }
@@ -10,7 +9,7 @@
         public Tank()
         {
             point = new Point(5,5);
-            LastPosition = point;
+            LastPosition = new Point(point.X, point.Y);
             MaxHealthPoints = CurrentHealthPoints = 300;
             Damage = 100;
             Weight = 300;
@@ -18,7 +17,7 @@
         public Tank(Point tankpos)
         {
             point = tankpos;
-            LastPosition = point;
+            LastPosition = new Point(tankpos.X, tankpos.Y);
             MaxHealthPoints = CurrentHealthPoints = 300;
             Damage = 100;
             Weight = 300;
@@ -26,20 +25,14 @@
         public Tank(Point tankpos, int Hpoints, int Damage, int Weight)
         {
             point = tankpos;
-            LastPosition = point;
+            LastPosition = new Point(tankpos.X, tankpos.Y);
             MaxHealthPoints = CurrentHealthPoints = Hpoints;
             this.Damage = Damage;
             this.Weight = Weight;
         }
-        public override void Move()
-        {
-            LastPosition.X = point.X;
-            LastPosition.Y = point.Y;
-            base.Move();
-        }
         public Projectile Shoot()
         {
-            return new Projectile(GetNextPoint());
+            return new Projectile(GetNextPoint(), direction);
         }
     }
 }

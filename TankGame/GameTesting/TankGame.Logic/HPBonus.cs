@@ -34,7 +34,10 @@
             {
                 Tank tank = (Tank)sender;
                 tank.CurrentHealthPoints += value;
-                tank.CurrentHealthPoints %= tank.MaxHealthPoints;
+                if(tank.CurrentHealthPoints>tank.MaxHealthPoints)
+                {
+                    tank.CurrentHealthPoints = tank.MaxHealthPoints;
+                }
                 collision = tank;
             }
             return collision;

@@ -7,11 +7,12 @@
         {
 
         }
-        public Projectile(Point point)
+        public Projectile(Point point, eDirection direction)
         {
             this.speed = 100;
             this.damage = 100;
-            this.point = point;
+            this.point = new Point(point.X,point.Y);
+            this.direction = direction;
         }
     }
 }

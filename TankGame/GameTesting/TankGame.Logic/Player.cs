@@ -15,10 +15,10 @@
         }
         public bool MoveTank(eDirection direction)
         {
-            if (tank.direction != direction && (int)tank.direction % 2 == (int)direction % 2)
-            {
-                return false;
-            }
+            //if (tank.direction != direction && (int)tank.direction % 2 == (int)direction % 2)
+            //{
+            //    return false;
+            //}
             tank.direction = direction;
             tank.Move();
             ActionHappened();

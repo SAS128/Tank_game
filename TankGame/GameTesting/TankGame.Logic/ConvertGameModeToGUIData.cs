@@ -30,11 +30,11 @@ namespace TankGame.Logic
 
         private static int FieldObjectToInt(FieldObject field)
         {
+            if(field==null)
+                return 0;
             Type type = field.GetType();
             if(type == new Obstacle().GetType())
                 return 1;
-            if(type == null)
-                return 0;
             if (type == new HPBonus().GetType())
                 return 2;
             return -1;

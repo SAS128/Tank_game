@@ -29,7 +29,8 @@
             else if (sender.GetType() == new Tank().GetType())
             {
                 Tank tank = (Tank)sender;
-                tank.point = (sender as Tank).LastPosition;
+                tank.point.X = (sender as Tank).LastPosition.X;
+                tank.point.Y = (sender as Tank).LastPosition.Y;
                 collision = tank;
             }
             return collision;

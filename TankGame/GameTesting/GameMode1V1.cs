@@ -21,23 +21,28 @@
             {
                 currentObject = field.fieldobjects[ptn.X, ptn.Y];
                 if (currentObject != null)
-                {
                     player1.tank = currentObject.Collision(player1.tank) as Tank;
-                }
-                if (player1.proj != null)
-                {
-                    ptn = player1.proj.point;
-                    currentObject = field.fieldobjects[ptn.X, ptn.Y];
-                    if (ptn != null && currentObject != null)
-                    {
-                        player1.proj = currentObject.Collision(player1.proj) as Projectile;
-                    }
-                }
             }
             else
             {
                 player1.tank.point.X = player1.tank.LastPosition.X;
                 player1.tank.point.Y = player1.tank.LastPosition.Y;
+            }
+            if (player1.proj != null)
+            {
+                player1.proj.Move();
+                ptn = player1.proj.point;
+                if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
+                {
+                    currentObject = field.fieldobjects[ptn.X, ptn.Y];
+                    if (ptn != null && currentObject != null)
+                        player1.proj = currentObject.Collision(player1.proj) as Projectile;
+                }
+                else
+                {
+                    player1.proj.point.X = player1.proj.LastPosition.X;
+                    player1.proj.point.Y = player1.proj.LastPosition.Y;
+                }
             }
 
             if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
@@ -45,28 +50,29 @@
                 ptn = player2.tank.point;
                 currentObject = field.fieldobjects[ptn.X, ptn.Y];
                 if (currentObject != null)
-                {
                     player2.tank = currentObject.Collision(player2.tank) as Tank;
-                }
-                if (player2.proj != null)
-                {
-                    ptn = player2.proj.point;
-                    currentObject = field.fieldobjects[ptn.X, ptn.Y];
-                    if (ptn != null && currentObject != null)
-                    {
-                        player2.proj = currentObject.Collision(player2.proj) as Projectile;
-                    }
-                }
             }
             else
             {
-                player2.tank.point.X = player1.tank.LastPosition.X;
-                player2.tank.point.Y = player1.tank.LastPosition.Y;
+                player2.tank.point.X = player2.tank.LastPosition.X;
+                player2.tank.point.Y = player2.tank.LastPosition.Y;
             }
-        }
-        public void GetInfoChangeableObjects()
-        {
-
+            if (player2.proj != null)
+            {
+                ptn = player2.proj.point;
+                player2.proj.Move();
+                if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
+                {
+                    currentObject = field.fieldobjects[ptn.X, ptn.Y];
+                    if (ptn != null && currentObject != null)
+                        player2.proj = currentObject.Collision(player2.proj) as Projectile;
+                }
+                else
+                {
+                    player2.proj.point.X = player2.proj.LastPosition.X;
+                    player2.proj.point.Y = player2.proj.LastPosition.Y;
+                }
+            }
         }
     }
 }
