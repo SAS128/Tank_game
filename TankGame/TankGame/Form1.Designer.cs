@@ -1,4 +1,7 @@
-﻿namespace TankGame
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace TankGame
 {
     partial class Form1
     {
@@ -34,14 +37,17 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "Form1";
 
-
-
-            Field field1 = new Field();
-
+       
+            FieldObject[,] fieldObjects= new FieldObject[10,10];
+        
+           
+            gam.field = new Field("SETOOON",fieldObjects);
+           
         }
+        GameMode1V1 gam = new GameMode1V1();
 
 
-
+    
 
 
 

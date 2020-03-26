@@ -12,6 +12,12 @@ namespace TankGame
     {
         public eDirection direction;
         protected uint speed;
+
+        public override object Collision(object sender)
+        {
+            return sender;
+        }
+
         public virtual void Move()
         {
             point = GetNextPoint();
