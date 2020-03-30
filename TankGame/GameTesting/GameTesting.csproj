@@ -46,6 +46,7 @@
     <Compile Include="GameMode1V1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TankGame.Logic\Bonus.cs" />
     <Compile Include="TankGame.Logic\HPBonus.cs" />
     <Compile Include="TankGame.Logic\ConvertGameModeToGUIData.cs" />
     <Compile Include="TankGame.Logic\Field.cs" />

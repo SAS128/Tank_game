@@ -14,10 +14,10 @@
             FieldName = "New field";
         }
 
-        public Field(string name, Point size, FieldObject[,] objts)
+        public Field(string name, Point size, FieldObject[,] objects)
         {
             FieldName = name;
-            fieldobjects = objts;
+            fieldobjects = objects;
             this.size = size;
         }
 
