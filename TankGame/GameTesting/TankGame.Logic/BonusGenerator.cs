@@ -8,24 +8,32 @@ namespace TankGame.Logic
 {
     class BonusGenerator : FieldObject
     {
-        Bonus CurrentBonus;
+        public Bonus CurrentBonus { private set; get; }
         int BonusRespawnInterval;
-        void SetNewRandomBonus()
+        public void SetNewRandomBonus()
         {
             CurrentBonus = new HPBonus();
         }
         public override object Collision(object sender)
         {
-            object collision = null;
-            if (sender.GetType() == new Projectile().GetType())
+            if(CurrentBonus==null)
             {
-                collision = sender;
+                return sender;
             }
-            else if (sender.GetType() == new Tank().GetType())
+            else
             {
-                collision = CurrentBonus.GiveEffect(sender);
+                object collision = null;
+                if (sender.GetType() == new Projectile().GetType())
+                {
+                    collision = sender;
+                }
+                else if (sender.GetType() == new Tank().GetType())
+                {
+                    collision = CurrentBonus.GiveEffect(sender);
+                    CurrentBonus = null;
+                }
+                return collision;
             }
-            return collision;
         }
     }
 }

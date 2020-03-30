@@ -21,12 +21,7 @@
         public override object Collision(object sender)
         {
             object collision = null;
-            if (sender.GetType() == new Projectile().GetType())
-            {
-                (sender as Projectile).direction = eDirection.NULL;
-                collision = sender;
-            }
-            else if (sender.GetType() == new Tank().GetType())
+            if (sender.GetType() == new Tank().GetType())
             {
                 Tank tank = (Tank)sender;
                 tank.point.X = (sender as Tank).LastPosition.X;

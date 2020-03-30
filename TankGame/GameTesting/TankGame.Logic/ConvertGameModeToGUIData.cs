@@ -13,7 +13,8 @@ namespace TankGame.Logic
         /// FieldObject becomes int,
         /// null - 0,
         /// obstacle - 1,
-        /// bonus - 2
+        /// empty bonus generator - 2,
+        /// bonus generator with bonus - 3
         /// </summary>
         public static NumberField ConvertFieldToNumbers(Field field)
         {
@@ -35,8 +36,13 @@ namespace TankGame.Logic
             Type type = field.GetType();
             if(type == new Obstacle().GetType())
                 return 1;
-            if (type == new HPBonus().GetType())
-                return 2;
+            if (type == new BonusGenerator().GetType())
+            {
+                if ((field as BonusGenerator).CurrentBonus == null)
+                    return 2;
+                else
+                    return 3;
+            }
             return -1;
         }
         /// <summary>

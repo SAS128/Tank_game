@@ -40,14 +40,13 @@
                 }
                 else
                 {
-                    player1.proj.point.X = player1.proj.LastPosition.X;
-                    player1.proj.point.Y = player1.proj.LastPosition.Y;
+                    player1.proj = null;
                 }
             }
 
+            ptn = player2.tank.point;
             if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
             {
-                ptn = player2.tank.point;
                 currentObject = field.fieldobjects[ptn.X, ptn.Y];
                 if (currentObject != null)
                     player2.tank = currentObject.Collision(player2.tank) as Tank;
@@ -60,7 +59,6 @@
             if (player2.proj != null)
             {
                 ptn = player2.proj.point;
-                player2.proj.Move();
                 if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
                 {
                     currentObject = field.fieldobjects[ptn.X, ptn.Y];
@@ -69,8 +67,7 @@
                 }
                 else
                 {
-                    player2.proj.point.X = player2.proj.LastPosition.X;
-                    player2.proj.point.Y = player2.proj.LastPosition.Y;
+                    player2.proj = null;
                 }
             }
         }

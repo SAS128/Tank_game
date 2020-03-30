@@ -32,7 +32,7 @@
         }
         public Projectile Shoot()
         {
-            return new Projectile(GetNextPoint(), direction);
+            return new Projectile(point, direction);
         }
     }
 }

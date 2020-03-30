@@ -20,9 +20,9 @@ namespace GameTesting
             room.field.fieldobjects[9, 4] = new Obstacle();
             room.field.fieldobjects[1, 3] = new Obstacle();
             room.field.fieldobjects[4, 3] = new Obstacle();
-            room.field.fieldobjects[8, 3] = new HPBonus();
-
-            Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1));
+            room.field.fieldobjects[8, 3] = new BonusGenerator();
+            (room.field.fieldobjects[8, 3] as BonusGenerator).SetNewRandomBonus();
+            Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1),player2));
             while(player1.tank.CurrentHealthPoints>0)
             {
                 eDirection dir = ReadKey(Console.ReadKey().Key);
@@ -35,7 +35,7 @@ namespace GameTesting
 
                 Console.WriteLine();
                 Console.Clear();
-                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1));
+                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2));
                 player1.tank.CurrentHealthPoints -= 10;
                 Console.Write($"{player1.tank.CurrentHealthPoints}/{player1.tank.MaxHealthPoints}");
             }
@@ -70,6 +70,9 @@ namespace GameTesting
                             break;
                         case 4:
                             Console.BackgroundColor = ConsoleColor.Magenta;
+                            break;
+                        case 3:
+                            Console.BackgroundColor = ConsoleColor.Cyan;
                             break;
                     }
                     Console.Write(" ");
