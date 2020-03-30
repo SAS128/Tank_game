@@ -36,6 +36,11 @@ namespace TankGame.Logic
 
             return true;
         }
+        private bool MoveProjectile()
+        {
+            proj.Move();
+            return true;
+        }
         public void CreateProjectile()
         {
             if (stopperShoot.Status == TaskStatus.Running)
@@ -43,7 +48,7 @@ namespace TankGame.Logic
             proj = tank.Shoot();
             ActionHappened(this);
             if(proj!=null)
-                stopperShoot = Task.Run(() => { Thread.Sleep(proj.Speed); while (proj != null) { Thread.Sleep(100); } });
+                stopperShoot = Task.Run(() => { while (proj != null) { Thread.Sleep(proj.Speed); proj.Move(); ActionHappened(this); } });
         }
     }
 }

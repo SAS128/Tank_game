@@ -32,7 +32,6 @@
             }
             if (player.proj != null)
             {
-                player.proj.Move();
                 ptn = player.proj.point;
                 if (ptn.X < field.size.X && ptn.Y < field.size.Y && ptn.Y >= 0 && ptn.X >= 0)
                 {

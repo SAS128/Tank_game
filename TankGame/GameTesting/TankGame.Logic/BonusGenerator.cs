@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading;
 using System.Threading.Tasks;
-
 namespace TankGame.Logic
 {
     class BonusGenerator : FieldObject
     {
         public Bonus CurrentBonus { private set; get; }
         int BonusRespawnInterval;
+        Task bonusRespawn;
+        public BonusGenerator()
+        {
+            BonusRespawnInterval = 3000;
+            bonusRespawn = new Task( () => {
+                Thread.Sleep(BonusRespawnInterval);
+                SetNewRandomBonus();
+            });
+        }
         public void SetNewRandomBonus()
         {
             CurrentBonus = new HPBonus();
@@ -31,6 +36,11 @@ namespace TankGame.Logic
                 {
                     collision = CurrentBonus.GiveEffect(sender);
                     CurrentBonus = null;
+                    bonusRespawn = Task.Run(() =>
+                    {
+                        Thread.Sleep(BonusRespawnInterval);
+                        SetNewRandomBonus();
+                    });
                 }
                 return collision;
             }

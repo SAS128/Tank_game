@@ -53,7 +53,8 @@ namespace GameTesting
                     gamemode.field.fieldobjects[9, 4] = new Obstacle();
                     gamemode.field.fieldobjects[1, 3] = new Obstacle();
                     gamemode.field.fieldobjects[4, 3] = new Obstacle();
-                    gamemode.field.fieldobjects[8, 3] = new HPBonus();
+                    gamemode.field.fieldobjects[8, 3] = new BonusGenerator();
+                    (gamemode.field.fieldobjects[8, 3] as BonusGenerator).SetNewRandomBonus();
                     break;
             }
         }
@@ -61,11 +62,16 @@ namespace GameTesting
         static void Main(string[] args)
         {
             Player player1 = new Player(1, new Point(1, 1));
-            Player player2 = new Player(1, new Point(3, 3));
+            Player player2 = new Player(2, new Point(3, 3));
             GameMode1V1 room = new GameMode1V1(player1, player2);
-            SetMap(ref room, "default");
-
-            Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1));
+            SetMap(ref room, "default1");
+            Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2));
+            player1.ActionHappened += delegate {
+                Console.Clear();
+                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2)); };
+            player2.ActionHappened += delegate {
+                Console.Clear();
+                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2)); };
             while(player1.tank.CurrentHealthPoints>0) 
             {
                 eDirection dir = ReadKey(Console.ReadKey().Key);
@@ -77,8 +83,6 @@ namespace GameTesting
                 }
 
                 Console.WriteLine();
-                Console.Clear();
-                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1));
                 player1.tank.CurrentHealthPoints -= 10;
                 Console.Write($"{player1.tank.CurrentHealthPoints}/{player1.tank.MaxHealthPoints}");
             }
@@ -89,15 +93,21 @@ namespace GameTesting
             //    Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1));
             //}
         }
+
+        private static void Player1_ActionHappened(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         static void Draw(NumberField field)
         {
             int width = field.SizeX;
             int height = field.SizeY;
-            for (int i = height-1; i >=0; i--)
+            for (int i = height - 1; i >= 0; i--)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    switch(field.positions[j, i])
+                    switch (field.positions[j, i])
                     {
                         case 0:
                             Console.BackgroundColor = ConsoleColor.White;
@@ -113,6 +123,9 @@ namespace GameTesting
                             break;
                         case 4:
                             Console.BackgroundColor = ConsoleColor.Magenta;
+                            break;
+                        case 3:
+                            Console.BackgroundColor = ConsoleColor.Cyan;
                             break;
                     }
                     Console.Write(" ");
@@ -132,6 +145,14 @@ namespace GameTesting
                 case ConsoleKey.S:
                     return eDirection.BOT;
                 case ConsoleKey.D:
+                    return eDirection.RIGHT;
+                case ConsoleKey.UpArrow:
+                    return eDirection.TOP;
+                case ConsoleKey.LeftArrow:
+                    return eDirection.LEFT;
+                case ConsoleKey.DownArrow:
+                    return eDirection.BOT;
+                case ConsoleKey.RightArrow:
                     return eDirection.RIGHT;
                 default:
                     return eDirection.NULL;
