@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameTesting.TankGame.Logic
+namespace TankGame.Logic
 {
     abstract class Bonus
     {
-        int effectAmount;
+        protected int Value;
         public abstract object GiveEffect(object sender);
     }
 }

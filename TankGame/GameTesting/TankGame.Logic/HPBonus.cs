@@ -1,46 +1,34 @@
 ﻿namespace TankGame.Logic
 {
-    class HPBonus : FieldObject
+    class HPBonus : Bonus
     {
-        int value { get; set; }
-        public bool isAvailable { get; private set; }
-        public int reload { get; private set; }
         public HPBonus()
         {
-            point = new Point(0,0);
-            value = 100;
+            Value = 100;
         }
 
-        public HPBonus(Point pos)
+        public HPBonus(int Value)
         {
-            point = pos;
-            value = 100;
+            this.Value = Value;
         }
-
-        public HPBonus(Point pos, string PropertyName, int value)
+        public override object GiveEffect(object sender)
         {
-            point = pos;
-            this.value = value;
-        }
-
-        public override object Collision(object sender)
-        {
-            object collision = null;
+            object effect = null;
             if (sender.GetType() == new Projectile().GetType())
             {
-                collision = sender;
+                effect = sender;
             }
             else if (sender.GetType() == new Tank().GetType())
             {
                 Tank tank = (Tank)sender;
-                tank.CurrentHealthPoints += value;
+                tank.CurrentHealthPoints += Value;
                 if(tank.CurrentHealthPoints>tank.MaxHealthPoints)
                 {
                     tank.CurrentHealthPoints = tank.MaxHealthPoints;
                 }
-                collision = tank;
+                effect = tank;
             }
-            return collision;
+            return effect;
         }
     }
 }
