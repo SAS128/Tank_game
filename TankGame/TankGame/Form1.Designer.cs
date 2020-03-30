@@ -56,7 +56,7 @@ namespace TankGame
 
             using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
-                using (SQLiteCommand command = new SQLiteCommand("CREATE TABLE StatisticTable (ID int identity primary key,[NickNameEnemyPlayer] varchar(21) unique,[IsWin] bit," +
+                using (SQLiteCommand command = new SQLiteCommand("CREATE TABLE StatisticTable (ID int AVTOINCREMENT primary key,[NickNameEnemyPlayer] varchar(21) unique,[IsWin] bit," +
                     "[LenghBattle] datetime); ", conn))
                 {
                     conn.Open();
@@ -67,9 +67,9 @@ namespace TankGame
 
             using (SQLiteConnection connectionUser = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
-                using (SQLiteCommand commandUser = new SQLiteCommand("create table LocalUserTable(ID int identity primary key," +
+                using (SQLiteCommand commandUser = new SQLiteCommand("create table LocalUserTable(ID int AVTOINCREMENT primary key," +
                     "[NickNamePlayer] varchar(21) unique,[Login] varchar(21) unique," +
-                    "[UserIdStatictic] int,[LenghBattle] datetime," +
+                    "[UserIdStatictic] int," +
                     "foreign key([UserIdStatictic]) references StatisticTable(Id) ); ", connectionUser))
                 {
                     connectionUser.Open();
@@ -80,13 +80,13 @@ namespace TankGame
             }
 
         }
-        private static void InsertData_to_StatisticTable()
+        private static void InsertData_to_StatisticTable(string NickName, bool IsWin, TimeSpan time)
         {
             using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
                 conn.Open();
-                using (SQLiteCommand command = new SQLiteCommand($"INSERT INTO StatisticTable (ID, " +
-                    $"[NickNameEnemyPlayer],[IsWin],[LenghBattle]) VALUES (1, 'Вася','1','{DateTime.Now.ToShortTimeString()}');", conn))//Заменить на передаваемые данные
+                using (SQLiteCommand command = new SQLiteCommand($"INSERT INTO StatisticTable (" +
+                    $"[NickNameEnemyPlayer],[IsWin],[LenghBattle]) VALUES ('{NickName}',{IsWin},'{time.ToString()}');", conn))//Заменить на передаваемые данные
                 {
                     command.ExecuteNonQuery();
                     conn.Close();
@@ -110,14 +110,14 @@ namespace TankGame
         /// <summary>
         /// LocalUserTable
         /// </summary>
-        private static void InsertData_to_LocalUserTable()
+        private static void InsertData_to_LocalUserTable(string NickName, string Login, int StatId)
         {
             using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
                 conn.Open();
                 using (SQLiteCommand conmand = new SQLiteCommand($"INSERT INTO LocalUserTable " +
-                    $"(ID, [NickNamePlayer],[Login],[UserIdStatictic],[LenghBattle]) " +
-                    $"VALUES (1, 'Вася','VasayLogin',1,'{DateTime.Now.ToShortTimeString()}');", conn))//Заменить на передаваемые данные
+                    $"([NickNamePlayer],[Login],[UserIdStatictic]) " +
+                    $"VALUES ('{NickName}','{Login}',{StatId});", conn))//Заменить на передаваемые данные
                 {
                     conmand.ExecuteNonQuery();
                     conn.Close();
