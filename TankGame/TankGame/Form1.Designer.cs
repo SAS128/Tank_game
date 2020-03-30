@@ -46,6 +46,7 @@ namespace TankGame
             this.ClientSize = new System.Drawing.Size(800, 800);
             this.Text = "Form1";
             this.Paint += PntMap;
+            this.BackColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedDialog;
 
             listwalls = GetMap("default");
@@ -71,12 +72,12 @@ namespace TankGame
                     list.Add(new WallObject(new Point(0, Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
                     list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8, Height / 8 + Height / 4)));
                     list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8 + Width / 4, Height / 8)));
-                    //list.Add(new WallObject(new Point(Width / 8, Height / 4 + Height / 8), new Point(Width / 8, Height / 4 + Height / 8)));
-                    //list.Add(new WallObject(new Point(100, 500), new Point(250, 500)));
+                    list.Add(new WallObject(new Point(Width / 8, Height / 4 + Height / 8), new Point(Width / 8, Height / 4 + Height / 8)));
+                    list.Add(new WallObject(new Point(100, 500), new Point(250, 500)));
                     list.Add(new WallObject(new Point(Width - Width / 8, Height / 8), new Point(Width - Width / 4 - Width/8, Height / 8)));
-                    //list.Add(new WallObject(new Point(700, 100), new Point(700, 250)));
-                    //list.Add(new WallObject(new Point(700, 350), new Point(700, 500)));
-                    //list.Add(new WallObject(new Point(550, 500), new Point(700, 500)));
+                    list.Add(new WallObject(new Point(700, 100), new Point(700, 250)));
+                    list.Add(new WallObject(new Point(700, 350), new Point(700, 500)));
+                    list.Add(new WallObject(new Point(550, 500), new Point(700, 500)));
                     break;
                 case null:
                     list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
