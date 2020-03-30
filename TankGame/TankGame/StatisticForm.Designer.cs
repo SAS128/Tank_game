@@ -63,43 +63,7 @@ namespace TankGame
         ListBox AllGames = new ListBox();
 
         public static string databaseName = @"Local_User_DB_Tanks.sqlite";
-        private static void CreateDB()
-        {
-            if (File.Exists(databaseName) == false)
-            {
-                CreateTable();
-              
-            }
-        }
-        private static void CreateTable()
-        {
-
-            using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
-            {
-                using (SQLiteCommand command = new SQLiteCommand("CREATE TABLE StatisticTable (ID int AVTOINCREMENT primary key,[NickNameEnemyPlayer] varchar(21) unique,[IsWin] bit," +
-                    "[LenghBattle] datetime); ", conn))
-                {
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
-
-            using (SQLiteConnection connectionUser = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
-            {
-                using (SQLiteCommand commandUser = new SQLiteCommand("create table LocalUserTable(ID int AVTOINCREMENT primary key," +
-                    "[NickNamePlayer] varchar(21) unique,[Login] varchar(21) unique," +
-                    "[UserIdStatictic] int," +
-                    "foreign key([UserIdStatictic]) references StatisticTable(Id) ); ", connectionUser))
-                {
-                    connectionUser.Open();
-                    commandUser.ExecuteNonQuery();
-                    connectionUser.Close();
-                }
-
-            }
-
-        }
+     
         private static void InsertData_to_StatisticTable(string NickName, bool IsWin, TimeSpan time)
         {
             using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
@@ -130,20 +94,9 @@ namespace TankGame
         /// <summary>
         /// LocalUserTable
         /// </summary>
-        private static void InsertData_to_LocalUserTable(string NickName, string Login, int StatId)
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
-            {
-                conn.Open();
-                using (SQLiteCommand conmand = new SQLiteCommand($"INSERT INTO LocalUserTable " +
-                    $"([NickNamePlayer],[Login],[UserIdStatictic]) " +
-                    $"VALUES ('{NickName}','{Login}',{StatId});", conn))//Заменить на передаваемые данные
-                {
-                    conmand.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
-        }
+        /// 
+
+      
         private static void ShowLocal()
         {
             using (SQLiteConnection conn = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))

@@ -18,5 +18,14 @@ namespace TankGame
             string nickname = "User";
             GreetingLabel.Text = $"Hello, {nickname}";
         }
+
+        private void StatisticsBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StatisticForm stat = new StatisticForm();
+
+            stat.ShowDialog();
+             this.Show();
+        }
     }
 }

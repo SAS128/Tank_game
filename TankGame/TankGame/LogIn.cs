@@ -26,8 +26,21 @@ namespace TankGame
         }
         private void EnterClick(object sender, EventArgs e)
         {
-            StartWindow frm1 = new StartWindow();
-            frm1.Show();
+            if (PasswordTextBox.Text.Length>0 && LoginTextBox.Text.Length>0)
+            {
+                //if (IsUserInServerDB() == true)
+                //{
+                /////////Обращение к серверной базе данных и поиск сущесвования игрока по логину
+                    StartWindow frm1 = new StartWindow();
+                    frm1.Show();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Этот пользователь не найден!","Ошибка!");
+                //}
+            }
+          
+           
         }
 
         private void CreateAccoutBtn_Click(object sender, EventArgs e)
@@ -36,5 +49,7 @@ namespace TankGame
             new CreateAccount().ShowDialog(this);
             this.Show();
         }
+
+      
     }
 }

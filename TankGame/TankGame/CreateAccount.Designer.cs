@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿
+using System.Windows.Forms;
 namespace TankGame
 {
     partial class CreateAccount
@@ -27,6 +28,9 @@ namespace TankGame
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        /// 
+        public static string databaseName = @"Local_User_DB_Tanks.sqlite";
+       
         private void InitializeComponent()
         {
             this.DoneCreateAccoutBtn = new System.Windows.Forms.Button();
@@ -47,19 +51,20 @@ namespace TankGame
             this.DoneCreateAccoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.DoneCreateAccoutBtn.ForeColor = System.Drawing.Color.White;
             this.DoneCreateAccoutBtn.Location = new System.Drawing.Point(152, 212);
-            this.DoneCreateAccoutBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DoneCreateAccoutBtn.Margin = new System.Windows.Forms.Padding(2);
             this.DoneCreateAccoutBtn.Name = "DoneCreateAccoutBtn";
             this.DoneCreateAccoutBtn.Size = new System.Drawing.Size(47, 24);
             this.DoneCreateAccoutBtn.TabIndex = 1;
             this.DoneCreateAccoutBtn.Text = "Done";
             this.DoneCreateAccoutBtn.UseVisualStyleBackColor = false;
+            this.DoneCreateAccoutBtn.Click +=this.DoneCreateAccoutBtn_Click;
             // 
             // BackToLogInBtn
             // 
             this.BackToLogInBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.BackToLogInBtn.ForeColor = System.Drawing.Color.White;
             this.BackToLogInBtn.Location = new System.Drawing.Point(25, 212);
-            this.BackToLogInBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BackToLogInBtn.Margin = new System.Windows.Forms.Padding(2);
             this.BackToLogInBtn.Name = "BackToLogInBtn";
             this.BackToLogInBtn.Size = new System.Drawing.Size(43, 24);
             this.BackToLogInBtn.TabIndex = 0;
@@ -122,7 +127,7 @@ namespace TankGame
             // 
             this.UserGetLoginTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.UserGetLoginTextBox.Location = new System.Drawing.Point(124, 57);
-            this.UserGetLoginTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserGetLoginTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.UserGetLoginTextBox.Name = "UserGetLoginTextBox";
             this.UserGetLoginTextBox.Size = new System.Drawing.Size(76, 20);
             this.UserGetLoginTextBox.TabIndex = 7;
@@ -131,7 +136,7 @@ namespace TankGame
             // 
             this.UserPasswordTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.UserPasswordTextBox.Location = new System.Drawing.Point(124, 98);
-            this.UserPasswordTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserPasswordTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.UserPasswordTextBox.MaxLength = 24;
             this.UserPasswordTextBox.Name = "UserPasswordTextBox";
             this.UserPasswordTextBox.PasswordChar = '*';
@@ -142,7 +147,7 @@ namespace TankGame
             // 
             this.UserNicknameTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.UserNicknameTextBox.Location = new System.Drawing.Point(124, 138);
-            this.UserNicknameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserNicknameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.UserNicknameTextBox.Name = "UserNicknameTextBox";
             this.UserNicknameTextBox.Size = new System.Drawing.Size(76, 20);
             this.UserNicknameTextBox.TabIndex = 9;
@@ -151,7 +156,7 @@ namespace TankGame
             // 
             this.UserEmailTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.UserEmailTextBox.Location = new System.Drawing.Point(124, 179);
-            this.UserEmailTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserEmailTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.UserEmailTextBox.Name = "UserEmailTextBox";
             this.UserEmailTextBox.Size = new System.Drawing.Size(76, 20);
             this.UserEmailTextBox.TabIndex = 10;
@@ -173,7 +178,7 @@ namespace TankGame
             this.Controls.Add(this.UserPasswordTextBox);
             this.Controls.Add(this.UserNicknameTextBox);
             this.Controls.Add(this.UserEmailTextBox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(304, 292);
             this.Name = "CreateAccount";
             this.Text = "CreateAccount";
@@ -194,6 +199,14 @@ namespace TankGame
         TextBox UserPasswordTextBox;
         TextBox UserNicknameTextBox;
         TextBox UserEmailTextBox;
+
+
+
+
+
+
+
+
         #endregion
     }
 }

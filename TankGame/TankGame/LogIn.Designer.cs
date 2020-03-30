@@ -48,6 +48,7 @@ namespace TankGame
             this.EnterBtn.TabIndex = 0;
             this.EnterBtn.Text = "Enter";
             this.EnterBtn.UseVisualStyleBackColor = false;
+            this.EnterBtn.Click += EnterClick;
             // 
             // CreateAccoutBtn
             // 
@@ -93,6 +94,7 @@ namespace TankGame
             // 
             this.LoginTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.LoginTextBox.Location = new System.Drawing.Point(120, 70);
+            this.LoginTextBox.MaxLength = 20;
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.Size = new System.Drawing.Size(100, 20);
             this.LoginTextBox.TabIndex = 5;
@@ -101,7 +103,7 @@ namespace TankGame
             // 
             this.PasswordTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.PasswordTextBox.Location = new System.Drawing.Point(120, 120);
-            this.PasswordTextBox.MaxLength = 24;
+            this.PasswordTextBox.MaxLength = 8;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
