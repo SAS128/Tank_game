@@ -44,7 +44,7 @@ namespace TankGame
             this.GameInfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.GameInfoPanel.ForeColor = System.Drawing.Color.White;
             this.GameInfoPanel.Location = new System.Drawing.Point(150, 8);
-            this.GameInfoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GameInfoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.GameInfoPanel.Name = "GameInfoPanel";
             this.GameInfoPanel.Size = new System.Drawing.Size(432, 348);
             this.GameInfoPanel.TabIndex = 0;
@@ -64,7 +64,7 @@ namespace TankGame
             this.EnterGameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.EnterGameBtn.ForeColor = System.Drawing.Color.White;
             this.EnterGameBtn.Location = new System.Drawing.Point(22, 57);
-            this.EnterGameBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnterGameBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EnterGameBtn.Name = "EnterGameBtn";
             this.EnterGameBtn.Size = new System.Drawing.Size(112, 41);
             this.EnterGameBtn.TabIndex = 2;
@@ -76,7 +76,7 @@ namespace TankGame
             this.SettingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.SettingsBtn.ForeColor = System.Drawing.Color.White;
             this.SettingsBtn.Location = new System.Drawing.Point(22, 98);
-            this.SettingsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SettingsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SettingsBtn.Name = "SettingsBtn";
             this.SettingsBtn.Size = new System.Drawing.Size(112, 41);
             this.SettingsBtn.TabIndex = 3;
@@ -88,7 +88,7 @@ namespace TankGame
             this.StatisticsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.StatisticsBtn.ForeColor = System.Drawing.Color.White;
             this.StatisticsBtn.Location = new System.Drawing.Point(22, 138);
-            this.StatisticsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatisticsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.StatisticsBtn.Name = "StatisticsBtn";
             this.StatisticsBtn.Size = new System.Drawing.Size(112, 41);
             this.StatisticsBtn.TabIndex = 4;
@@ -101,24 +101,26 @@ namespace TankGame
             this.AuthorsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.AuthorsBtn.ForeColor = System.Drawing.Color.White;
             this.AuthorsBtn.Location = new System.Drawing.Point(22, 179);
-            this.AuthorsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AuthorsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AuthorsBtn.Name = "AuthorsBtn";
             this.AuthorsBtn.Size = new System.Drawing.Size(112, 41);
             this.AuthorsBtn.TabIndex = 5;
             this.AuthorsBtn.Text = "Authors";
             this.AuthorsBtn.UseVisualStyleBackColor = false;
+            this.AuthorsBtn.Click += new System.EventHandler(this.AuthorsBtn_Click);
             // 
             // ExitBtn
             // 
             this.ExitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(50)))), ((int)(((byte)(39)))));
             this.ExitBtn.ForeColor = System.Drawing.Color.White;
             this.ExitBtn.Location = new System.Drawing.Point(22, 219);
-            this.ExitBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ExitBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ExitBtn.Name = "ExitBtn";
             this.ExitBtn.Size = new System.Drawing.Size(112, 41);
             this.ExitBtn.TabIndex = 6;
             this.ExitBtn.Text = "Exit";
             this.ExitBtn.UseVisualStyleBackColor = false;
+            this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // StartWindow
             // 
@@ -133,7 +135,7 @@ namespace TankGame
             this.Controls.Add(this.StatisticsBtn);
             this.Controls.Add(this.AuthorsBtn);
             this.Controls.Add(this.ExitBtn);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StartWindow";
             this.Text = "StartWindow";
             this.ResumeLayout(false);
