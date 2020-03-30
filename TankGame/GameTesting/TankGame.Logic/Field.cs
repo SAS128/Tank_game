@@ -10,7 +10,7 @@
         public Field()
         {
             size = new Point(10, 5);
-            fieldobjects =new FieldObject[10,5];
+            fieldobjects = new FieldObject[10,5];
             FieldName = "New field";
         }
 
