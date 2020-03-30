@@ -25,9 +25,10 @@ namespace GameTesting
             Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1),player2));
             while(player1.tank.CurrentHealthPoints>0)
             {
+                bool res = false;
                 eDirection dir = ReadKey(Console.ReadKey().Key);
                 if(dir != eDirection.NULL)
-                    player1.MoveTank(dir);
+                    res = player1.MoveTank(dir);
                 else
                 {
                     player1.CreateProjectile();
@@ -36,7 +37,8 @@ namespace GameTesting
                 Console.WriteLine();
                 Console.Clear();
                 Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2));
-                player1.tank.CurrentHealthPoints -= 10;
+                if(res)
+                    player1.tank.CurrentHealthPoints -= 10;
                 Console.Write($"{player1.tank.CurrentHealthPoints}/{player1.tank.MaxHealthPoints}");
             }
             //for (int i = 0; i < 10; i++)
@@ -92,6 +94,14 @@ namespace GameTesting
                 case ConsoleKey.S:
                     return eDirection.BOT;
                 case ConsoleKey.D:
+                    return eDirection.RIGHT;
+                case ConsoleKey.UpArrow:
+                    return eDirection.TOP;
+                case ConsoleKey.LeftArrow:
+                    return eDirection.LEFT;
+                case ConsoleKey.DownArrow:
+                    return eDirection.BOT;
+                case ConsoleKey.RightArrow:
                     return eDirection.RIGHT;
                 default:
                     return eDirection.NULL;

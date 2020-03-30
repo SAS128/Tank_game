@@ -5,7 +5,7 @@
     {
         public Point LastPosition { get; set; }
         public eDirection direction;
-        protected uint speed;
+        public int Speed { protected set; get; }
         public virtual void Move()
         {
             LastPosition = new Point(point.X, point.Y);
