@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EASendMail;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -122,8 +123,7 @@ namespace TankGame
                                  CreateDB();
                                 InsertData_to_LocalUserTable(UserNicknameTextBox.Text.ToString(), UserGetLoginTextBox.Text.ToString());
                                 this.Close();
-
-
+                SendMsgToEmail();
                 //            }
                 //            else
                 //            {
@@ -139,6 +139,36 @@ namespace TankGame
                 //    {
                 //        MessageBox.Show("Этот email уже используеться игроком","Ошибка email");
                 //    }
+            }
+        }
+        private void SendMsgToEmail()
+        {
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+
+                    SmtpMail oMail = new SmtpMail("TryIt");
+                    oMail.From = "ITSTEPtestfortest@gmail.com";
+                    oMail.To = $"{UserEmailTextBox.Text}";
+                    oMail.Subject = "test email from gmail account";
+                    oMail.TextBody = "тело моего сообщения";
+
+
+                    SmtpServer oServer = new SmtpServer("smtp.gmail.com");
+                    oServer.User = "ITSTEPtestfortest@gmail.com";
+                    oServer.Password = "Test123Test";
+                    oServer.Port = 587;
+                    oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                    SmtpClient oSmtp = new SmtpClient();
+                    oSmtp.SendMail(oServer, oMail);
+                });
+            }
+            catch (Exception ep)
+            {
+                MessageBox.Show("failed to send email with the following error:");
+                MessageBox.Show(ep.Message);
             }
         }
     }
