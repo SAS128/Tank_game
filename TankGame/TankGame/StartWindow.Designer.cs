@@ -79,6 +79,7 @@ namespace TankGame
             this.SettingsBtn.TabIndex = 3;
             this.SettingsBtn.Text = "Settings";
             this.SettingsBtn.UseVisualStyleBackColor = false;
+            this.SettingsBtn.Click += SettingBtnClick;
             // 
             // StatisticsBtn
             // 
@@ -134,10 +135,7 @@ namespace TankGame
 
         }
 
-        private void AuthorsBtn_Click(object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
+
 
         Panel GameInfoPanel;
 
