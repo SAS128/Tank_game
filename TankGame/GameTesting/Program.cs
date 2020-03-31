@@ -54,7 +54,6 @@ namespace GameTesting
                     gamemode.field.fieldobjects[1, 3] = new Obstacle();
                     gamemode.field.fieldobjects[4, 3] = new Obstacle();
                     gamemode.field.fieldobjects[8, 3] = new BonusGenerator();
-                    (gamemode.field.fieldobjects[8, 3] as BonusGenerator).SetNewRandomBonus();
                     break;
             }
         }
@@ -72,6 +71,21 @@ namespace GameTesting
             player2.ActionHappened += delegate {
                 Console.Clear();
                 Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2)); };
+            for(int i=0; i<room.field.size.X; i++)
+            {
+                for(int j=0; j<room.field.size.Y; j++)
+                {
+                    if (room.field.fieldobjects[i, j]!=null)
+                        if (room.field.fieldobjects[i,j].GetType() == typeof(BonusGenerator))
+                        {
+                            (room.field.fieldobjects[i, j] as BonusGenerator).BonusRespawned += delegate {
+                                Console.Clear();
+                                Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2));
+                            };
+                            (room.field.fieldobjects[i, j] as BonusGenerator).SetNewRandomBonus();
+                        }
+                }
+            }
             while(player1.tank.CurrentHealthPoints>0) 
             {
                 eDirection dir = ReadKey(Console.ReadKey().Key);
@@ -84,7 +98,8 @@ namespace GameTesting
 
                 Console.WriteLine();
                 player1.tank.CurrentHealthPoints -= 10;
-                Console.Write($"{player1.tank.CurrentHealthPoints}/{player1.tank.MaxHealthPoints}");
+                Console.WriteLine($"{player1.tank.CurrentHealthPoints}/{player1.tank.MaxHealthPoints}");
+                Console.WriteLine($"{player2.tank.CurrentHealthPoints}/{player2.tank.MaxHealthPoints}");
             }
             //for (int i = 0; i < 10; i++)
             //{

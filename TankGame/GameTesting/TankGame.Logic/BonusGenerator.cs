@@ -4,6 +4,8 @@ namespace TankGame.Logic
 {
     class BonusGenerator : FieldObject
     {
+        public delegate void BonusRespawnedHandler();
+        public event BonusRespawnedHandler BonusRespawned;
         public Bonus CurrentBonus { private set; get; }
         int BonusRespawnInterval;
         Task bonusRespawn;
@@ -18,6 +20,7 @@ namespace TankGame.Logic
         public void SetNewRandomBonus()
         {
             CurrentBonus = new HPBonus();
+            BonusRespawned();
         }
         public override object Collision(object sender)
         {

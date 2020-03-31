@@ -1,15 +1,18 @@
-﻿namespace TankGame.Logic
+﻿using System;
+namespace TankGame.Logic
 {
     class GameMode1V1
     {
         public Field field;
         public Player player1;
         public Player player2;
+        private Random rand;
         public GameMode1V1(Player player1, Player player2)
         {
             this.player1 = player1;
             this.player2 = player2;
             field = new Field();
+            rand = new Random(field.GetHashCode());
             player1.ActionHappened += new Player.ActionHappenedHandler(SyncField);
             player1.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncField);
@@ -96,15 +99,19 @@
         }
         private void TankDestroyed(Player destroyer, Player victim)
         {
+
             destroyer.score += 1;
-            for(int i=(destroyer.tank.point.X + destroyer.score)% field.size.X; i<field.size.X;i++)
+            int maxX = field.size.X-1;
+            int maxY = field.size.Y-1;
+            int i = rand.Next(0, maxX);
+            int j = rand.Next(0, maxY);
+            while(field.fieldobjects[i,j]!=null&&destroyer.tank.point.X==i&&destroyer.tank.point.Y==j)
             {
-                for(int j= (destroyer.tank.point.Y + destroyer.score) % field.size.Y; j < field.size.Y; j++)
-                {
-                    if (field.fieldobjects[i, j] == null)
-                        victim.tank = new Tank(new Point(i, j));
-                }
+                i = rand.Next(0, maxX);
+                j = rand.Next(0, maxY);
             }
+            victim.tank = null;
+            victim.tank = new Tank(new Point(i, j));
         }
     }
 }
