@@ -1,11 +1,33 @@
 ﻿namespace TankGame.Logic
 {
+    /// <summary>
+    /// enum that represents 4 directions
+    /// </summary>
     public enum eDirection { NULL, LEFT, TOP, RIGHT, BOT };
-    public abstract class PlayerObject : FieldObject
+    /// <summary>
+    /// FieldObject`s child. Makes the objects movable
+    /// </summary>
+    public abstract class PlayerObject
     {
+        /// <summary>
+        /// Position on the field
+        /// </summary>
+        public Point point { get; set; }
+        /// <summary>
+        /// Last position useful for collision on other objects.
+        /// </summary>
         public Point LastPosition { get; set; }
+        /// <summary>
+        /// Direction of the object. Useful for move
+        /// </summary>
         public eDirection direction;
+        /// <summary>
+        /// The pause between one and the next move.
+        /// </summary>
         public int Speed { protected set; get; }
+        /// <summary>
+        /// Moves the object
+        /// </summary>
         public virtual void Move()
         {
             LastPosition = new Point(point.X, point.Y);
@@ -39,6 +61,5 @@
             }
             return pos;
         }
-        public override object Collision(object sender) { return sender; }
     }
 }

@@ -82,7 +82,6 @@ namespace GameTesting
                                 Console.Clear();
                                 Draw(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ModifyField(ConvertGameModeToGUIData.ConvertFieldToNumbers(room.field), player1), player2));
                             };
-                            (room.field.fieldobjects[i, j] as BonusGenerator).SetNewRandomBonus();
                         }
                 }
             }

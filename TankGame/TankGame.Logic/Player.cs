@@ -2,17 +2,39 @@
 using System.Threading;
 namespace TankGame.Logic
 {
+    /// <summary>
+    /// Works as interface between user and field
+    /// </summary>
     public class Player
     {
         public delegate void ActionHappenedHandler(Player player);
+        /// <summary>
+        /// Occurs when any method of this player called. Useful for creating a gamemode
+        /// </summary>
         public event ActionHappenedHandler ActionHappened;
+        /// <summary>
+        /// Player`s tank
+        /// </summary>
         public Tank tank;
+        /// <summary>
+        /// This tank`s projectile
+        /// </summary>
         public Projectile proj;
+        /// <summary>
+        /// Player`s score
+        /// </summary>
         public int score;
         private Task stopperMove;
         private Task stopperShoot;
-
+        /// <summary>
+        /// Number of team
+        /// </summary>
         public int teamNumber { get; private set; }
+        /// <summary>
+        /// The only one construstor
+        /// </summary>
+        /// <param name="teamNumber">Number of team</param>
+        /// <param name="tankStartPoint">The starting position of tank</param>
         public Player(int teamNumber, Point tankStartPoint)
         {
             stopperMove = new Task(() => { Thread.Sleep(tank.Speed); });
@@ -21,12 +43,13 @@ namespace TankGame.Logic
             tank = new Tank(tankStartPoint);
             score = 0;
         }
+        /// <summary>
+        /// Interface method. Moves tank in chosen direction
+        /// </summary>
+        /// <param name="direction">The direction of tank</param>
+        /// <returns>Is succesful move</returns>
         public bool MoveTank(eDirection direction)
         {
-            //if (tank.direction != direction && (int)tank.direction % 2 == (int)direction % 2)
-            //{
-            //    return false;
-            //}
             if(stopperMove.Status == TaskStatus.Running)
                 stopperMove.Wait();
             tank.direction = direction;
@@ -41,6 +64,9 @@ namespace TankGame.Logic
             proj.Move();
             return true;
         }
+        /// <summary>
+        /// Interface method. Makes the nak shoot according to its direction at the moment.
+        /// </summary>
         public void CreateProjectile()
         {
             if (stopperShoot.Status == TaskStatus.Running)

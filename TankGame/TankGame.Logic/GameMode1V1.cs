@@ -1,12 +1,20 @@
 ﻿using System;
 namespace TankGame.Logic
 {
+    /// <summary>
+    /// Sync field and players. If player makes move, the field syncs because of events
+    /// </summary>
     public class GameMode1V1
     {
         public Field field;
         public Player player1;
         public Player player2;
         private Random rand;
+        /// <summary>
+        /// Sets the DM between 2 players
+        /// </summary>
+        /// <param name="player1"></param>
+        /// <param name="player2"></param>
         public GameMode1V1(Player player1, Player player2)
         {
             this.player1 = player1;
@@ -18,12 +26,18 @@ namespace TankGame.Logic
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncField);
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
         }
-        public GameMode1V1(Player player1, Player player2, int seed)
+        /// <summary>
+        /// Sets the DM with other map
+        /// </summary>
+        /// <param name="player1"></param>
+        /// <param name="player2"></param>
+        /// <param name="field">Map</param>
+        public GameMode1V1(Player player1, Player player2, Field field)
         {
             this.player1 = player1;
             this.player2 = player2;
-            field = new Field();
-            rand = new Random(seed);
+            this.field = field;
+            rand = new Random(field.GetHashCode());
             player1.ActionHappened += new Player.ActionHappenedHandler(SyncField);
             player1.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncField);

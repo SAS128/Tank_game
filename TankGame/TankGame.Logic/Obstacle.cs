@@ -1,24 +1,17 @@
 ﻿namespace TankGame.Logic
 {
+    /// <summary>
+    /// Nothing special. Just an obstacle. Useful for its collision.
+    /// </summary>
     public class Obstacle : FieldObject
     {
-        Point secondpos { get; set; }
-       
-        public Obstacle()
-        {
-            point = new Point(0, 0);
-            secondpos = new Point(0, 0);
-         
-        }
-
-        public Obstacle(Point first,Point second)
-        {
-            point = first;
-            secondpos = second;
-        
-        }
-
-        public override object Collision(object sender)
+        public Obstacle() { }
+        /// <summary>
+        /// Destroys bullet, stops tank
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
+        public object Collision(object sender)
         {
             object collision = null;
             if (sender.GetType() == new Tank().GetType())

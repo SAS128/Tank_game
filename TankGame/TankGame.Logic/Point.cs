@@ -9,6 +9,10 @@
             X = x;
             Y = y;
         }
+        /// <summary>
+        /// Gets the string of point in format:"X:Y".
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string res = X.ToString();

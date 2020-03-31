@@ -1,10 +1,19 @@
 ﻿namespace TankGame.Logic
 {
-    public class Tank : PlayerObject
+    public class Tank : PlayerObject, FieldObject
     {
+        /// <summary>
+        /// Tank`s max HP. Only get
+        /// </summary>
         public int MaxHealthPoints { get; private set; }
+        /// <summary>
+        /// Tank`s current health.
+        /// </summary>
         public int CurrentHealthPoints { get; set; }
         int Damage { get; set; }
+        /// <summary>
+        /// Constructor for test
+        /// </summary>
         public Tank()
         {
             point = new Point(5,5);
@@ -14,6 +23,10 @@
             Speed = 300;
             direction = eDirection.TOP;
         }
+        /// <summary>
+        /// Sets the position of tank
+        /// </summary>
+        /// <param name="tankpos"></param>
         public Tank(Point tankpos)
         {
             point = tankpos;
@@ -23,6 +36,13 @@
             Speed = 300;
             direction = eDirection.TOP;
         }
+        /// <summary>
+        /// Make your tank
+        /// </summary>
+        /// <param name="tankpos"></param>
+        /// <param name="Hpoints"></param>
+        /// <param name="Damage"></param>
+        /// <param name="Weight"></param>
         public Tank(Point tankpos, int Hpoints, int Damage, int Weight)
         {
             point = tankpos;
@@ -32,11 +52,20 @@
             this.Speed = Weight;
             direction = eDirection.TOP;
         }
+        /// <summary>
+        /// Create the projectile
+        /// </summary>
+        /// <returns></returns>
         public Projectile Shoot()
         {
             return new Projectile(point, direction);
         }
-        public override object Collision(object sender)
+        /// <summary>
+        /// Stops tank or get hurt by a projectile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns>Modified sender</returns>
+        public object Collision(object sender)
         {
             if(sender.GetType() == new Projectile().GetType())
             {
@@ -50,7 +79,7 @@
                 tank.point.Y = (sender as Tank).LastPosition.Y;
                 sender = tank;
             }
-            return base.Collision(sender);
+            return sender;
         }
     }
 }

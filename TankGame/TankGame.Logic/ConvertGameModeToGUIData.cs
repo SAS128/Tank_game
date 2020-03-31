@@ -10,7 +10,7 @@ namespace TankGame.Logic
     public static class ConvertGameModeToGUIData
     {
         /// <summary>
-        /// FieldObject becomes int,
+        /// FieldObject becomes int:
         /// null - 0,
         /// obstacle - 1,
         /// empty bonus generator - 2,
@@ -46,14 +46,15 @@ namespace TankGame.Logic
             return -1;
         }
         /// <summary>
+        /// Should be used after ConvertFieldToNumbers, to its result will be added Player`s objects. 
         /// tank - 4,
         /// projectile - 5
         /// </summary>
         /// <param name="field"></param>
-        /// Give here ConvertFieldToNumbersResult
+        /// Give here ConvertFieldToNumbers result
         /// <param name="player"></param>
-        /// 
-        /// <returns></returns>
+        /// Give here the Player who should be added to "visualization"
+        /// <returns>NumberField struct</returns>
         public static NumberField ModifyField(NumberField field, Player player)
         {
             field.positions[player.tank.point.X, player.tank.point.Y] = 4;

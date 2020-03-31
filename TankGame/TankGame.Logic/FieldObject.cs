@@ -1,10 +1,13 @@
 ﻿namespace TankGame.Logic
 {
-
-    public abstract class FieldObject
+    public interface FieldObject
     {
-        public Point point { get; set; }
-        abstract public object Collision(object sender);
+        /// <summary>
+        /// Abstact method that should work as a relation between two FieldObjects. One, who bumped into this object. Other is this object.
+        /// </summary>
+        /// <param name="sender">The one who bumps</param>
+        /// <returns>Result according to child class</returns>
+        object Collision(object sender);
     }
 
 }
