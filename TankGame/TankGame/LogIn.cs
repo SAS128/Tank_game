@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,33 @@ namespace TankGame
             }
           
            
+        }
+
+
+        private bool IsUserInServerDB()
+        {
+            bool isInUs = false;
+            using (SqlConnection conect = new SqlConnection(/*"Data Source=localhost;Initial Catalog=;"*/))
+            {
+                conect.Open();
+                using (SqlCommand comand = new SqlCommand("SELECT * FROM LoginTable", conect))
+                {
+                    SqlDataReader reader = comand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //reader.GetValue(0),
+                        //reader.GetValue(1),
+                        //reader.GetValue(2)
+                        if (LoginTextBox.Text == reader.GetString(1))
+                        {
+                            isInUs = true;
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+            return isInUs;
+
         }
 
         private void CreateAccoutBtn_Click(object sender, EventArgs e)

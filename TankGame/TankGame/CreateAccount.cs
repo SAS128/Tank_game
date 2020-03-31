@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -21,15 +22,18 @@ namespace TankGame
         }
         private void BackToLoginClick(object sender, EventArgs e)
         {
+           
             LogIn frm = new LogIn();
-            frm.Show();
-            //this.Hide();
+            frm.ShowDialog();
+          
         }
         private void DoneCreateClick(object sender, EventArgs e)
         {
+            
             StartWindow frm1 = new StartWindow();
-            frm1.Show();
-            //this.Hide();
+            frm1.ShowDialog();
+            this.Close();
+
         }
 
         private void BackToLogInBtn_Click(object sender, EventArgs e)
@@ -169,6 +173,96 @@ namespace TankGame
             {
                 MessageBox.Show("failed to send email with the following error:");
                 MessageBox.Show(ep.Message);
+            }
+        }
+
+
+        private void SQlMatchTableMain()
+        {
+            using (SqlConnection conect = new SqlConnection("Data Source=localhost;Initial Catalog=;"))
+            {
+                conect.Open();
+                using (SqlCommand comand = new SqlCommand("SELECT * FROM StaticMatchTable", conect))
+                {
+                    SqlDataReader reader = comand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //reader.GetValue(0),
+                        //reader.GetValue(1),
+                        //reader.GetValue(2),
+                        //reader.GetValue(3),
+                        //reader.GetValue(4),
+                        //reader.GetValue(5),
+                        //reader.GetValue(6)
+
+
+                    }
+                    reader.Close();
+                }
+            }
+        }
+        private void SQlUserMain()
+        {
+            using (SqlConnection conect = new SqlConnection("Data Source=localhost;Initial Catalog=;"))
+            {
+                conect.Open();
+                using (SqlCommand comand = new SqlCommand("SELECT * FROM UserInfo", conect))
+                {
+                    SqlDataReader reader = comand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //reader.GetValue(0),
+                        //reader.GetValue(1),
+                        //reader.GetValue(2),
+                        //reader.GetValue(3),
+                        //reader.GetValue(4)
+                    }
+                    reader.Close();
+                }
+            }
+        }
+        private void SQlAllUsersMain()
+        {
+            using (SqlConnection conect = new SqlConnection("Data Source=localhost;Initial Catalog=;"))
+            {
+                conect.Open();
+                using (SqlCommand comand = new SqlCommand("SELECT * FROM UserTable", conect))
+                {
+                    SqlDataReader reader = comand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //reader.GetValue(0),
+                        //reader.GetValue(1),
+                        //reader.GetValue(2)
+                    }
+                    reader.Close();
+                }
+            }
+        }
+
+        private void SQlStatisticMain()
+        {
+            using (SqlConnection conect = new SqlConnection("Data Source=localhost;Initial Catalog=;"))
+            {
+                conect.Open();
+                using (SqlCommand comand = new SqlCommand("SELECT * FROM AllStatisticsTable", conect))
+                {
+                    SqlDataReader reader = comand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //reader.GetValue(0),
+                        //reader.GetValue(1),
+                        //reader.GetValue(2),
+                        //reader.GetValue(3),
+                        //reader.GetValue(4),
+                        //reader.GetValue(5),
+                        //reader.GetValue(6),
+                        //reader.GetValue(7),
+                        //reader.GetValue(8)
+
+                    }
+                    reader.Close();
+                }
             }
         }
     }
