@@ -57,7 +57,7 @@ namespace TankGame
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listwalls = GetMap("default");
+            listwalls = GetMap("lab");
         }
 
         List<WallObject> GetMap(string key = null)
@@ -78,6 +78,33 @@ namespace TankGame
                     list.Add(new WallObject(new Point(Width / 8, Height - Height / 8), new Point(Width / 8 + Width / 4, Height - Height / 8)));
                     list.Add(new WallObject(new Point(Width - Width / 8, Height - Height / 8), new Point(Width - Width / 8, Height - Height / 8 - Height / 4)));
                     list.Add(new WallObject(new Point(Width - Width / 8, Height - Height / 8), new Point(Width - Width / 4 - Width / 8, Height - Height / 8)));
+                    break;
+                case "lab":
+                    list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, wallwidth), new Point(this.Width - wallwidth * 4, wallwidth)));
+                    list.Add(new WallObject(new Point(Width - wallwidth * 4, 0), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 7)));
+                    list.Add(new WallObject(new Point(0, Height - wallwidth * 8), new Point(this.Width - wallwidth * 4, this.Height - wallwidth * 8)));
+
+                    list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8, Height / 8 + Height / 4)));
+                    list.Add(new WallObject(new Point(Width / 8, Height / 8), new Point(Width / 8 + Width / 4, Height / 8)));
+                    list.Add(new WallObject(new Point(Width - Width / 8, Height / 8), new Point(Width - Width / 8, Height / 8 + Height / 4)));
+                    list.Add(new WallObject(new Point(Width - Width / 8, Height / 8), new Point(Width - Width / 4 - Width / 8, Height / 8)));
+                    list.Add(new WallObject(new Point(Width / 8, Height - Height / 8), new Point(Width / 8, Height - Height / 4 - Height / 8)));
+                    list.Add(new WallObject(new Point(Width / 8, Height - Height / 8), new Point(Width / 8 + Width / 4, Height - Height / 8)));
+                    list.Add(new WallObject(new Point(Width - Width / 8, Height - Height / 8), new Point(Width - Width / 8, Height - Height / 8 - Height / 4)));
+                    list.Add(new WallObject(new Point(Width - Width / 8, Height - Height / 8), new Point(Width - Width / 4 - Width / 8, Height - Height / 8)));
+
+                    list.Add(new WallObject(new Point(Width / 4, Height / 4), new Point(Width / 4, Height / 4 + Height / 5)));
+                    list.Add(new WallObject(new Point(Width / 4, Height / 4), new Point(Width / 4 + Width / 5, Height / 4)));
+
+                    list.Add(new WallObject(new Point(Width - Width / 4, Height / 4), new Point(Width - Width / 4, Height / 4 + Height / 5)));
+                    list.Add(new WallObject(new Point(Width - Width / 4, Height / 4), new Point(Width - Width / 2 + Width / 16, Height / 4)));
+
+                    list.Add(new WallObject(new Point(Width / 4, Height - Height / 4), new Point(Width / 4, Height - Height / 4 - Height / 5)));
+                    list.Add(new WallObject(new Point(Width / 4, Height - Height / 4), new Point(Width / 4 + Width / 5, Height - Height / 4)));
+
+                    list.Add(new WallObject(new Point(Width - Width / 4, Height - Height / 4), new Point(Width - Width / 4, Height - Height / 4 - Height / 5)));
+                    list.Add(new WallObject(new Point(Width - Width / 4, Height - Height / 4), new Point(Width - Width / 5 - Width / 4, Height - Height / 4)));
                     break;
                 case null:
                     list.Add(new WallObject(new Point(wallwidth, 0), new Point(wallwidth, this.Height - wallwidth * 7)));
