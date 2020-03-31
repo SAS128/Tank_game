@@ -16,6 +16,7 @@ namespace TankGame
         public LogIn()
         {
             InitializeComponent();
+
         }
 
         private void CreateAccountClick(object sender, EventArgs e)

@@ -82,6 +82,7 @@ namespace TankGame
             this.SettingsBtn.TabIndex = 3;
             this.SettingsBtn.Text = "Settings";
             this.SettingsBtn.UseVisualStyleBackColor = false;
+            this.SettingsBtn.Click += SettingBtnClick;
             // 
             // StatisticsBtn
             // 
