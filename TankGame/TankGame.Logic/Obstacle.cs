@@ -1,6 +1,6 @@
 ﻿namespace TankGame.Logic
 {
-    class Obstacle : FieldObject
+    public class Obstacle : FieldObject
     {
         Point secondpos { get; set; }
        

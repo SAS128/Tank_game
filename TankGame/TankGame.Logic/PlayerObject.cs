@@ -1,7 +1,7 @@
 ﻿namespace TankGame.Logic
 {
-    enum eDirection { NULL, LEFT, TOP, RIGHT, BOT };
-    abstract class PlayerObject : FieldObject
+    public enum eDirection { NULL, LEFT, TOP, RIGHT, BOT };
+    public abstract class PlayerObject : FieldObject
     {
         public Point LastPosition { get; set; }
         public eDirection direction;

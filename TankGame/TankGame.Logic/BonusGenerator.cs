@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 namespace TankGame.Logic
 {
-    class BonusGenerator : FieldObject
+    public class BonusGenerator : FieldObject
     {
         public delegate void BonusRespawnedHandler();
         public event BonusRespawnedHandler BonusRespawned;

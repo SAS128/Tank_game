@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankGame", "TankGame\TankGame.csproj", "{BC22D496-FC17-42F1-A3FC-E42DD099CB96}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTesting", "GameTesting\GameTesting.csproj", "{869F57F1-9D50-4478-B203-E597A409E521}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TankGame.Logic", "TankGame.Logic\TankGame.Logic.csproj", "{BC1B0EF9-B4F4-454E-B170-990E7B562068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC22D496-FC17-42F1-A3FC-E42DD099CB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC22D496-FC17-42F1-A3FC-E42DD099CB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC22D496-FC17-42F1-A3FC-E42DD099CB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC22D496-FC17-42F1-A3FC-E42DD099CB96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{869F57F1-9D50-4478-B203-E597A409E521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{869F57F1-9D50-4478-B203-E597A409E521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{869F57F1-9D50-4478-B203-E597A409E521}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{869F57F1-9D50-4478-B203-E597A409E521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1B0EF9-B4F4-454E-B170-990E7B562068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1B0EF9-B4F4-454E-B170-990E7B562068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1B0EF9-B4F4-454E-B170-990E7B562068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1B0EF9-B4F4-454E-B170-990E7B562068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

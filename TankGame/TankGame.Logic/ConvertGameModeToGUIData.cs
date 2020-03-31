@@ -7,7 +7,7 @@ namespace TankGame.Logic
         public int SizeY;
         public int[,] positions;
     }
-    static class ConvertGameModeToGUIData
+    public static class ConvertGameModeToGUIData
     {
         /// <summary>
         /// FieldObject becomes int,

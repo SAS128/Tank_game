@@ -2,7 +2,7 @@
 using System.Threading;
 namespace TankGame.Logic
 {
-    class Player
+    public class Player
     {
         public delegate void ActionHappenedHandler(Player player);
         public event ActionHappenedHandler ActionHappened;

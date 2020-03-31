@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TankGame.Logic
 {
-    class GameMode1V1
+    public class GameMode1V1
     {
         public Field field;
         public Player player1;
@@ -18,6 +18,18 @@ namespace TankGame.Logic
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncField);
             player2.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
         }
+        public GameMode1V1(Player player1, Player player2, int seed)
+        {
+            this.player1 = player1;
+            this.player2 = player2;
+            field = new Field();
+            rand = new Random(seed);
+            player1.ActionHappened += new Player.ActionHappenedHandler(SyncField);
+            player1.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
+            player2.ActionHappened += new Player.ActionHappenedHandler(SyncField);
+            player2.ActionHappened += new Player.ActionHappenedHandler(SyncPlayers);
+        }
+
         private void SyncField(Player player)
         {
             Point ptn = player.tank.point;
@@ -105,7 +117,7 @@ namespace TankGame.Logic
             int maxY = field.size.Y-1;
             int i = rand.Next(0, maxX);
             int j = rand.Next(0, maxY);
-            while(field.fieldobjects[i,j]!=null&&destroyer.tank.point.X==i&&destroyer.tank.point.Y==j)
+            while(field.fieldobjects[i,j]!=null||(destroyer.tank.point.X==i&&destroyer.tank.point.Y==j))
             {
                 i = rand.Next(0, maxX);
                 j = rand.Next(0, maxY);

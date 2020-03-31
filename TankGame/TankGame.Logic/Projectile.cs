@@ -1,6 +1,6 @@
 ﻿namespace TankGame.Logic
 {
-    class Projectile : PlayerObject
+    public class Projectile : PlayerObject
     {
         public int damage;
         public Projectile()

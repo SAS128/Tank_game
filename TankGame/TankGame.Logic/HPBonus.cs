@@ -1,6 +1,6 @@
 ﻿namespace TankGame.Logic
 {
-    class HPBonus : Bonus
+    public class HPBonus : Bonus
     {
         public HPBonus()
         {

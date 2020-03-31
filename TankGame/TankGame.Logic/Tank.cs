@@ -1,6 +1,6 @@
 ﻿namespace TankGame.Logic
 {
-    class Tank : PlayerObject
+    public class Tank : PlayerObject
     {
         public int MaxHealthPoints { get; private set; }
         public int CurrentHealthPoints { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace TankGame.Logic
 {
-    class Field
+    public class Field
     {
         public string FieldName { get; set; }
 
