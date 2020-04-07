@@ -47,8 +47,14 @@ namespace TankGame.Logic
         }
         /// <summary>
         /// Should be used after ConvertFieldToNumbers, to its result will be added Player`s objects. 
-        /// tank - 4,
-        /// projectile - 5
+        /// tank LEFT - 4,
+        /// tank TOP - 5,
+        /// tank RIGHT - 6,
+        /// tank BOTTOM - 7,
+        /// projectile LEFT - 8,
+        /// projectile TOP - 9,
+        /// projectile RIGHT - 10,
+        /// projectile BOTTOM - 11
         /// </summary>
         /// <param name="field"></param>
         /// Give here ConvertFieldToNumbers result
@@ -57,9 +63,9 @@ namespace TankGame.Logic
         /// <returns>NumberField struct</returns>
         public static NumberField ModifyField(NumberField field, Player player)
         {
-            field.positions[player.tank.point.X, player.tank.point.Y] = 4;
+            field.positions[player.tank.point.X, player.tank.point.Y] = 3 + (int)player.tank.direction;
             if(player.proj!=null)
-                field.positions[player.proj.point.X, player.proj.point.Y] = 5;
+                field.positions[player.proj.point.X, player.proj.point.Y] = 7 + (int)player.proj.direction;
             return field;
         }
     }
